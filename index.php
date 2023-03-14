@@ -8,10 +8,6 @@
     <header>
         <!-- zawartość nagłówka strony  eeeee-->
          <!-- zawartość nagłówka strony  eeeee-->
-          <!-- zawartość nagłówka strony  eeeee-->
-           <!-- zawartość nagłówka strony  eeeee-->
-            <!-- zawartość nagłówka strony  eeeee-->
-            <h1>siema</h1>
     </header>
 
     <nav>
