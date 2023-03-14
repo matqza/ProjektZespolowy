@@ -6,7 +6,8 @@
 </head>
 <body>
     <header>
-        <!-- zawartość nagłówka strony -->
+        <!-- zawartość nagłówka strony  eeeee-->
+         <!-- zawartość nagłówka strony  eeeee-->
     </header>
 
     <nav>
