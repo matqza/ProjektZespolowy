@@ -1,1 +1,2 @@
 sprawdz
+zobacz
