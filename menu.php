@@ -1,3 +1,0 @@
-sprawdz
-zobacz
-123
