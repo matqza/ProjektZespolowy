@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="rejestracja.css">
-	<title>Rejestracja</title>
-</head>
-<body>
-	<h1>Panel logowania</h1>
-	<form action="rejestracja.php" method="post">
-		<label for="login">Login:</label>
-		<input type="text" id="login" name="login" required><br><br>
-		
-		<label for="haslo">Hasło:</label>
-		<input type="password" id="haslo" name="haslo" required><br><br>
-		
-		<input type="submit" value="Zarejestruj się">
-	</form>
-</body>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="rejestracja.css">
+		<title>Panel logowania</title>
+	</head>
+
+	<body>
+		<div class = "login-box">
+			<h2>Login</h2>
+			<form action ="#">
+				<div class = "input-box">
+					<input type = "login" required>
+					<label>Login</label>
+				</div>
+				<div class = "input-box">
+					<input type = "password" required>
+					<label>Hasło</label>
+				</div>
+				<button type = "submit" class = "btn">Zaloguj się</button>
+				<div class = "forgot-password">
+					<a href ="#">Zapomniałem mojego hasła</a>
+				</div>
+				<div class = "signup">
+					<a href ="#">Zarejestruj sie</a>
+				</div>
+			</form>
+		</div>
+	</body>
 </html>
