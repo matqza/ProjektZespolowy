@@ -1,0 +1,47 @@
+header{
+width: 100%;
+margin: 0px,0px,0px,0px;
+padding: 0px,0px,0px,0px;
+height: 5%;
+background-color: black;
+position: inherit;
+}
+
+
+#container{
+
+    width: 100%;
+    margin: 0px,0px,0px,0px;
+    padding: 0%;
+    height: 100%;
+    position:absolute
+
+}
+
+
+main{
+width: 80%;
+height: 90%;
+padding-top: 10%;
+background-color: aqua;
+left:10%;
+
+}
+
+
+
+.menudiv{
+    height: 0%;
+}
+
+
+
+.menu_cell
+{
+    background-color: red;
+    position:static;
+    width: 500px;
+    height: 50px;
+}
+
+
