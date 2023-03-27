@@ -49,14 +49,20 @@ phpinfo();
 
 
 
-                    for($number=0;$number<$ingredientString.ob_get_length();$number++)
+                    for($number=0;$number<strlen($ingredientString);$number++)
                     {
-                        if($ingredientString[$number]==",")
+                        if($ingredientString[$number]==","  || $number+1==strlen($ingredientString))
                         {
-                            $thisIngrediant = $conn->query("select * from ingredients where id=$number");
-
-                                $mytemprow = $thisIngrediant->fetch_assoc();
-                            $fullIngredients .=$mytemprow["Ingredient"];
+                            $thisIngrediant = $conn->query("select * from ingredients where id=$tempHelp");
+                         
+                                $mytemprow = $thisIngrediant->fetch_row();
+                              
+                                if($number+1==strlen($ingredientString))
+                                {
+                                    $fullIngredients .=$mytemprow[1];
+                                    break;
+                                }
+                                $fullIngredients .=$mytemprow[1] . ", ";
                             $tempHelp="";
                         }
                         else
@@ -65,14 +71,14 @@ phpinfo();
                             $tempHelp .= $ingredientString[$number];
                         }
                     }
+                  
 
-
-
-
+                        $thisid = "menu".$thisid;
                     echo <<<HTML
               <div class="menu_cell" >
-                   <button id={$thisid}>
-                   <p>{$fullIngredients}</p>
+                   <button id= $thisid>
+                    <p class="menuName"></p>
+                   <p class="menuIngrediants">{$fullIngredients}</p>
                 </button>
               </div>
             HTML;
