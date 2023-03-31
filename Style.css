@@ -1,0 +1,43 @@
+       /*Style wszystkich tekstur w CSS strony rejestracji.*/ 
+       body {
+        background-color: lightblue;
+       
+
+      }
+      .button-register
+      {
+          background-color: darkcyan;
+          height:40px;
+          width: 200px;
+          background-color: #04AA6D;
+
+      }
+      .label1{
+    
+        margin:250px;
+     
+       
+      }
+      .label2{
+    
+      }
+      .container {
+        margin-left:400px ;
+        padding: 16px;
+        background-color: white;
+        width: 600px;
+        height:500px;
+        background-color: lightsteelblue;
+      }
+      .input{
+        margin-left:150px ;
+        width:300px;
+        height:20px;
+        margin-bottom:20px;
+      }
+      .main-label{
+        margin-left: 200px;
+       margin-bottom:50px;
+      }
+
+

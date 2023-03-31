@@ -6,6 +6,7 @@
 </head>
 <body>
     <header>
+        dupa dupa
         <!-- zawartość nagłówka strony zawartość nagłówka strony zawartość nagłówka strony -->
     </header>
 
