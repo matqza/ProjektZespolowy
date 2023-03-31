@@ -6,11 +6,12 @@
       }
       .button-register
       {
+
           background-color: darkcyan;
           height:40px;
           width: 200px;
           background-color: #04AA6D;
-
+          margin-bottom:10px;
       }
       .label1{
     
@@ -38,6 +39,11 @@
       .main-label{
         margin-left: 200px;
        margin-bottom:50px;
+      }
+      .agreement{
+        
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: italic;
       }
 
 
