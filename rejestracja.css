@@ -27,7 +27,6 @@ h2
 {
 	position: relative;
 	width:550px;
-	/*background: rgb(105, 129, 39); */
 }
 
 .login-box form
@@ -49,7 +48,35 @@ h2
 	background: transparent;
 	border-radius: 50px;
 	border: 2px solid;
+	font-size: 1em;
+	color: #fff;
+	padding: 0 20px;
 	outline: none;
+}
+
+.input-box input:focus,
+.input-box input:valid
+{
+	border-color:#0ef;
+}
+
+.input-box label
+{
+	position:absolute;
+	top: 50%;
+	left:20px;
+	transform: translateY(-50%);
+	font-size: 1em;
+	color:#fff
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label
+{
+	top:1px;
+	font-size: .8em;
+	background: #1f293a;
+	color: #0ef
 }
 
 .forgot-password
