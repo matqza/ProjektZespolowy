@@ -43,5 +43,19 @@ left:10%;
     width: 500px;
     height: 50px;
 }
+#Basket
+{
+    background-color: aquamarine;
+    top: 5%;
+    right: 5%;
+    height: 25%;
+    width: 15%;
+    position: absolute;
+}
 
-
+#BasketButton
+{
+    top:3%;
+    right: 10%;
+    position:fixed;
+}
