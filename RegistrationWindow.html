@@ -11,8 +11,9 @@
 <main>
     
 
-    <form>
-        <div class="container">
+    <form class="container">
+      
+      <div     class="icon-container">
         <h1 class="main-label">Zarejestruj się</h1>
         <div class="Label">
            <div>
@@ -22,27 +23,27 @@
             </div>
             <div>
                
-                    <input type="text" placeholder="Wpisz swoją nazwę użytkownika" name="username" class="input" id="username" >
+                    <input  placeholder="Wpisz swoją nazwę użytkownika" name="username" class="input" id="username" required>
                 
             </div>
             <div>
                 <center>
-                    <label for="email"  class="label1"><b>Email:</b></label>
+                    <label for="email"  class="label2"><b>Email:</b></label>
                  </center>
             </div>
             <div>
           
-                    <input type="email" placeholder="Wpisz email" name="email" class="input" id="email">
+                    <input  placeholder="Wpisz email" name="email" class="input" id="email" required>
                 
             </div>
             <div>
                 <center>
-                    <label for="password"  class="label1"><b>Hasło:</b></label>
+                    <label for="password"  class="label2"><b>Hasło:</b></label>
                 </center>
             </div>
             <div>
                 
-                    <input type="password" placeholder="Wpisz hasło" name="password" class="input" id="password">
+                    <input  placeholder="Wpisz hasło" name="password" class="input" id="password" required>
                
             </div>
             <div>
@@ -51,7 +52,31 @@
                 </center>
             </div>
             <div>
-                <input type="password" placeholder="Potwierdź hasło" name="password2" class="input" id="password2">
+                <input  placeholder="Potwierdź hasło" name="password2" class="input" id="password2" required>
+            </div>      
+            <div>
+                <center>
+                    <label for="adress"  class="label2" ><b>Adres zamieszkania:</b></label>
+                </center>
+            </div>
+            <div>
+                <input  placeholder="Wpisz adres" name="adress" class="input" id="adress" required>
+            </div> 
+            <div>
+                <center>
+                    <label for="phoneNumber"  class="label2" ><b>Numer telefonu:</b></label>
+                </center>
+            </div>
+            <div>
+                <input  placeholder="Wpisz numer" name="number" class="input" id="number" required>
+            </div>
+            <div>
+                <center>
+                    <label for="surname"  class="label2" ><b>Nazwisko:</b></label>
+                </center>
+            </div>
+            <div>
+                <input  placeholder="Wpisz nazwisko"  name="surname" class="input" id="surname" required >
             </div>
             <div>
                 <center>
@@ -73,8 +98,9 @@
                     </div>
                 </center>
             </div>
+    
+         </div>
         </div>
-    </div>
     </form>
 </main>
 </body>
