@@ -31,7 +31,10 @@
   
       }
       .container {
+<<<<<<< Updated upstream
         
+=======
+>>>>>>> Stashed changes
         padding: 16px;
        /* background-color: white;*/
         width: 600px;
@@ -39,8 +42,14 @@
        
         vertical-align: middle;
         background-color:rgba(47,79,79,.7);
+<<<<<<< Updated upstream
         margin-left:auto ;
         margin-right:auto;
+=======
+        margin-left: auto;
+        margin-right: auto;
+   
+>>>>>>> Stashed changes
      
       }
       .icon-container
