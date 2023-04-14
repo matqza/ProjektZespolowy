@@ -27,14 +27,11 @@
       }
       .label2{
     
-        color:rgb(182, 221, 255);
+        color:rgba(239, 156, 156, 0.877);
   
       }
       .container {
-<<<<<<< Updated upstream
         
-=======
->>>>>>> Stashed changes
         padding: 16px;
        /* background-color: white;*/
         width: 600px;
@@ -42,14 +39,9 @@
        
         vertical-align: middle;
         background-color:rgba(47,79,79,.7);
-<<<<<<< Updated upstream
-        margin-left:auto ;
-        margin-right:auto;
-=======
-        margin-left: auto;
-        margin-right: auto;
-   
->>>>>>> Stashed changes
+        margin-left: 50%;
+        margin-right:  -50%;
+       
      
       }
       .icon-container
