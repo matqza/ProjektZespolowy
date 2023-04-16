@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <script>
+
+            
+          function SetAddVisibility()
+                 {
+                    var x = document.getElementById("addToOrder");
+                if(x.style.display=="none")
+                    x.style.display="block";
+                else
+                x.style.display="none"
+
+                 }
+
+
+                 function AddToOrder($pizzaID)
+                 {
+                    var x = document.getElementById("Order");
+                    var newRow = x.insertRow();
+                    var newCell1 = newRow.insertCell();
+                    var newText = document.createTextNode($pizzaID);
+                    newCell1.appendChild(newText);
+                 }
+
+    </script>
+
+
+
+
+
+
     <title>Nazwa strony</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="menu.css" rel="stylesheet" type="text/css">
+    <link href="koszyk.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-   <div id="container">
-    <div id="Basket" >
-        <table id="BasketTable">
-        </table>
-        <form action="koszyk.php">
-            <button  id="BasketClear" onclick="ClearBasket()">
-                wyczyść
-            </button>
-            <button type="submit" id="BasketSubmit" onclick="SubmitBasket()" >
-                Do Koszyka
-            </button>
-        </form>
-    </div>
+
 
     <header >
-    <button onclick="SetVisibility()" id="BasketButton">
-    Koszyk
-    </button>
+  
     </header>
 
     <nav>
@@ -32,7 +46,16 @@
     </nav>
 
     <main>
-    <?php
+
+        <table id="Order">
+        </table>
+                <script>
+                    document.getElementById("Order").innerHTML= localStorage.getItem("basketresult");
+                </script>
+
+
+        <div id="addToOrder">
+                <?php
       $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
 
 
@@ -88,7 +111,7 @@
                             $thisid = "menu".$thisid;
                         echo <<<HTML
                     <div class="menu_cell" >
-                        <button id= $thisid onclick="AddToBasket(id)">
+                        <button id= $thisid onclick="AddToOrder(id)">
                             <p class="menuName"></p>
                         <p class="menuIngrediants">{$fullIngredients}</p>
                         </button>
@@ -106,45 +129,13 @@
            }
 
     ?>   
-
-                <script>
-                 function SetVisibility()
-                 {
-                    var x = document.getElementById("Basket");
-                if(x.style.display=="none")
-                    x.style.display="block";
-                else
-                x.style.display="none"
-
-                 }
-
-
-
-                 function AddToBasket($pizzaID)
-                 {
-                    var x = document.getElementById("BasketTable");
-                    var newRow = x.insertRow();
-                    var newCell1 = newRow.insertCell();
-                    var newText = document.createTextNode($pizzaID);
-                    newCell1.appendChild(newText);
-                 }
-
-                 function ClearBasket()
-                 {
-                    var x = document.getElementById("BasketTable");
-                    x.innerHTML = '';
-                 }
-
-                 function SubmitBasket()
-                 {
-                    var rows = document.getElementsByTagName("BasketTable");
-                    var result = rows.innerHTML;
-
-                    localStorage.setItem("basketresult",result);
-                 }
-
-
-                </script>
+        <button  id="addToOrderCancel" onclick="SetAddVisibility()">
+            anuluj
+        </button>
+        </div>
+        <button  id="addToOrderbuton" onclick="SetAddVisibility()">
+            dodaj do zamówienia
+        </button>
      </main>
 
     <footer>

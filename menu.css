@@ -59,3 +59,14 @@ left:10%;
     right: 10%;
     position:fixed;
 }
+
+
+#BasketClear
+{
+    
+    position: relative;
+    bottom:100px;
+    right: 10%;
+    height: 100px;
+    width: 50%;
+}
