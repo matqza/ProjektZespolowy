@@ -6,9 +6,8 @@
        body {
         /*background-color: lightblue;*/
         background-image:url('imagePizzaWeb.jpg');
-        max-width: 100%;
-        height: auto;
-        width: auto\9; /* ie8 */
+        background-size:100%;
+        background-repeat: no-repeat;
       }
       .button-register
       {
