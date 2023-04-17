@@ -6,7 +6,9 @@
        body {
         /*background-color: lightblue;*/
         background-image:url('imagePizzaWeb.jpg');
-
+        max-width: 100%;
+        height: auto;
+        width: auto\9; /* ie8 */
       }
       .button-register
       {
@@ -27,7 +29,7 @@
       }
       .label2{
     
-        color:rgba(239, 156, 156, 0.877);
+        color:rgba(222, 209, 209, 0.492);
   
       }
       .container {
@@ -39,8 +41,8 @@
        
         vertical-align: middle;
         background-color:rgba(47,79,79,.7);
-        margin-left: 30%;
-        margin-right:  -30%;
+        margin-left: auto;
+        margin-right:  auto;
        
      
       }
@@ -63,14 +65,14 @@
       .main-label{
         margin-left: 200px;
        margin-bottom:50px;
-       color:rgb(182, 221, 255);
+       color:rgba(245, 196, 196, 0.492);
        
       }
       .agreement{
         
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-style: italic;
-        color:rgb(182, 221, 255);
+        color:rgba(245, 192, 192, 0.492);
       }
 
 
