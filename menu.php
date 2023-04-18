@@ -1,6 +1,6 @@
 <?php
 
-//12:35 18.04.2023
+//13:31 18.04.2023
 
 // ustawienia bazy danych
 $servername = "localhost";
