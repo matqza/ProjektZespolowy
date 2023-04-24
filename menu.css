@@ -29,3 +29,56 @@ header
 	border-bottom: 2px solid var(--main-color);
 	color: var(--main-color);
 }
+
+
+/* section logo */
+.icons
+{
+	display: flex;
+	align-items: center;
+	padding: 10px 22px;
+	background: var(--main-color);
+	border-radius: 5rem;
+}
+
+.icons i
+{
+	font-size: 28 px;
+	color: black;
+	margin-right: 21px;
+	margin-left:9px;
+}
+
+.logo
+{
+	font-size:20px;
+}
+/* end section logo */
+
+section
+{
+	padding: 90px 20% 80px;
+}
+
+.about
+{
+/*	width:50px; */
+	height: 70vh;
+	position:relative;
+	display:grid;
+	align-items: center;
+	gap:2rem;
+}
+
+.about-text p
+{
+	font-size: var(--p-font);
+	font-weight: 20;
+	color: black;
+	line-height: 25px;
+	margin-bottom:2.3rem;
+}
+
+
+
+
