@@ -3,18 +3,20 @@
 <head>
     
     <title>Nazwa strony</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+   <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <link href="menu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
    <div id="container">
+    <!--div z koszykiem-->
     <div id="Basket" >
         <table id="BasketTable">
         </table>
-        <form action="koszyk.php">
+        
             <button  id="BasketClear" onclick="ClearBasket()">
                 wyczyść
             </button>
+            <form action="koszyk.php">
             <button type="submit" id="BasketSubmit" onclick="SubmitBasket()" >
                 Do Koszyka
             </button>
@@ -32,6 +34,7 @@
     </nav>
 
     <main>
+        <!--ączenie z dazą danych oraz dynamiczne tworzenie guzików-->
     <?php
       $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
 
@@ -53,7 +56,7 @@
 
                  while($wiersz = $wynik->fetch_assoc())
                 {
-                        $thisid = $wiersz["Id"];
+                        $thisName = $wiersz["Name"];
                         $ingredientString = $wiersz["Ingredients"];
                         $fullIngredients ="";
                         $tempHelp="";
@@ -85,63 +88,89 @@
                         }
                     
 
-                            $thisid = "menu".$thisid;
+                            $thisName = "m".$thisName;
                         echo <<<HTML
                     <div class="menu_cell" >
-                        <button id= $thisid onclick="AddToBasket(id)">
+                        <button id= $thisName onclick="AddToBasket(id)">
                             <p class="menuName"></p>
                         <p class="menuIngrediants">{$fullIngredients}</p>
                         </button>
                     </div>
                     HTML;
-//AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
+                    //AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
 
 
                     //AddToBasket($pizzaID,$pizzaIng,$pizzaCostS,$pizzaCostL)
 
                  
-                 }
+             }
                 
               
-           }
+        }
+
+        function GetNameByID($pizzaId)
+        {
+            $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
+
+
+        if(mysqli_connect_errno())
+        {
+            echo "connection failed";
+            exit();
+        }
+     
+
+
+
+           $wynik = $conn->query("select Name from pizza where Id=$pizzaId");
+           return $wynik;
+
+        }
 
     ?>   
 
                 <script>
-                 function SetVisibility()
-                 {
-                    var x = document.getElementById("Basket");
-                if(x.style.display=="none")
-                    x.style.display="block";
-                else
-                x.style.display="none"
+                    function SetVisibility()
+                    {
+                        var x = document.getElementById("Basket");
+                    if(x.style.display=="none")
+                        x.style.display="block";
+                    else
+                    x.style.display="none"
 
-                 }
+                    }
 
 
 
-                 function AddToBasket($pizzaID)
-                 {
-                    var x = document.getElementById("BasketTable");
-                    var newRow = x.insertRow();
-                    var newCell1 = newRow.insertCell();
-                    var newText = document.createTextNode($pizzaID);
-                    newCell1.appendChild(newText);
-                 }
+                    function AddToBasket($pizzaID)
+                    {
+                        $pizzaID = $pizzaID.substring(1);
+                        var x = document.getElementById("BasketTable");
+                        var newRow = x.insertRow();
+                        var newCell1 = newRow.insertCell();
+                        var newText = document.createTextNode($pizzaID);
+                        newCell1.appendChild(newText);
 
-                 function ClearBasket()
-                 {
-                    var x = document.getElementById("BasketTable");
-                    x.innerHTML = '';
-                 }
 
-                 function SubmitBasket()
-                 {
-                    var rows = document.getElementsByTagName("BasketTable");
-                    var result = rows.innerHTML;
+                    
+                        
+                    }
 
-                    localStorage.setItem("basketresult",result);
-                 }
+
+
+                    //czyszczenie koszyka
+                    function ClearBasket()
+                    {
+                        var x = document.getElementById("BasketTable");
+                        x.innerHTML = '';
+                    }
+                
+                    function SubmitBasket()
+                    {
+                        var x = document.getElementById("BasketTable");
+                        sessionStorage.setItem('basketresult',x.innerHTML);
+                    }
+
 
 
                 </script>

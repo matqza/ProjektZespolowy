@@ -24,6 +24,24 @@
                     newCell1.appendChild(newText);
                  }
 
+                 function LoadSavedData()
+                 {
+                    /*
+                    var myArray = sessionStorage.getItem('myArray');
+                    var sentData=localStorage.getItem("basketresult");
+                    var x = document.getElementById("Order");
+                    var newRow = x.insertRow();
+                    var newCell1 = newRow.insertCell();
+                    var newText = document.createTextNode(sentData[1][1]);
+                    newCell1.appendChild(newText);
+                    */
+                  
+                   var sentData=sessionStorage.getItem('basketresult');
+                   var tableid = document.getElementById("Order");
+                   tableid.innerHTML=sentData;
+                    
+                 }
+
     </script>
 
 
@@ -34,7 +52,7 @@
     <title>Nazwa strony</title>
     <link href="koszyk.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body onload="LoadSavedData();">
 
 
     <header >
@@ -49,9 +67,9 @@
 
         <table id="Order">
         </table>
-                <script>
-                    document.getElementById("Order").innerHTML= localStorage.getItem("basketresult");
-                </script>
+                
+                    
+                
 
 
         <div id="addToOrder">
@@ -108,7 +126,7 @@
                         }
                     
 
-                            $thisid = "menu".$thisid;
+                            $thisid = "m".$thisid;
                         echo <<<HTML
                     <div class="menu_cell" >
                         <button id= $thisid onclick="AddToOrder(id)">

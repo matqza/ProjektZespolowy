@@ -55,6 +55,7 @@ left:10%;
 
 #BasketButton
 {
+    
     top:3%;
     right: 10%;
     position:fixed;
@@ -65,8 +66,18 @@ left:10%;
 {
     
     position: relative;
-    bottom:100px;
-    right: 10%;
-    height: 100px;
-    width: 50%;
+    bottom:0px;
+    left: 0px;
+    height: 50px;
+    width: 50px;
+}
+
+#BasketSubmit
+{
+    
+    position: relative;
+    bottom:0;
+    right: 0px;
+    height: 50px;
+    width: 50px;
 }
