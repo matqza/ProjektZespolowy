@@ -20,7 +20,7 @@ header
 	font-size: var(--p-font);
 	font-weight: 600;
 	padding: 10px 10px;
-	margin: 2px 25px;
+	margin: 2px 20px;
 	border-bottom: 2px solid transparent;
 	transition: all .38s ease;
 }
@@ -60,24 +60,110 @@ section
 	padding: 90px 20% 80px;
 }
 
-.about
+/* section o nas */
+.about-text 
 {
-/*	width:50px; */
-	height: 70vh;
-	position:relative;
-	display:grid;
-	align-items: center;
-	gap:2rem;
+	text-align: center;
+	padding: 40px;
+	background-color: #f8f8f8;
 }
+  
+.about-text p 
+{
+	font-size: 18px;
+	line-height: 1.5;
+	color: #333;
+}
+  
+.about-text p:first-child 
+{
+	margin-top: 0;
+}
+  
+.about-text p:last-child 
+{
+	margin-bottom: 0;
+}
+ /* end section o nas */
 
-.about-text p
-{
-	font-size: var(--p-font);
-	font-weight: 20;
-	color: black;
-	line-height: 25px;
-	margin-bottom:2.3rem;
+
+ /* section menu */
+.menu-text {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 40px;
+	background-color: #f8f8f8;
 }
+  
+.menu-text h2 
+{
+	text-align: center;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+  
+.menu-text ul 
+{
+	list-style-type: none;
+	padding: 0;
+}
+  
+.menu-text li 
+{
+	margin-bottom: 20px;
+}
+  
+.menu-text h3 
+{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+  
+.menu-text p 
+{
+	margin: 0;
+}
+/* section menu */
+
+
+ /* section profile */
+.profile 
+{
+	padding: 50px;
+	background-color: #f7f7f7;
+}
+  
+.profile-text 
+{
+	text-align: center;
+}
+  
+.profile-text h2 
+{
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+  
+.profile-info 
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 20px;
+}
+  
+.profile-info p 
+{
+	font-size: 16px;
+	line-height: 1.4;
+	margin: 0;
+}
+  
+.profile-info strong 
+{
+	font-weight: bold;
+}
+/* end section profile */
+  
 
 
 
