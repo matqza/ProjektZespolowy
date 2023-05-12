@@ -6,7 +6,7 @@
 </head>
 <body>
    
-<a href="menu.php">link text</a>
+<a href="menu.php">link textt</a>
 
     <header>
         <!-- zawartość nagłówka strony -->

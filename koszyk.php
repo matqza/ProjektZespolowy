@@ -3,6 +3,8 @@
 <head>
     <script>
 
+          
+    
             
           function SetAddVisibility()
                  {
@@ -14,6 +16,12 @@
 
                  }
 
+                 function deleteRow( $ill)
+                 {
+                    var x = document.getElementById("Order");
+                    $ill.closest('tr').remove();
+                 }
+
 
                  function AddToOrder($pizzaID)
                  {
@@ -22,6 +30,31 @@
                     var newCell1 = newRow.insertCell();
                     var newText = document.createTextNode($pizzaID);
                     newCell1.appendChild(newText);
+                    newCell1 = newRow.insertCell();
+                    newCell1.innerHTML = "<button>edycja</button>";
+                    newCell1 = newRow.insertCell();
+                    newCell1.innerHTML = '<button onclick="deleteRow(this)">klik</button>';
+                 }
+
+                 function AddColumn( $buttonType,  $table)
+                 {
+                   // var table = document.getElementById("tableTest");
+                    var rows = $table.rows;
+                    //console.log("rows", rows);
+
+                    for (var i = 0; i < rows.length; ++i) {                
+                        var td = document.createElement("td");
+                       // td.innerText = $buttonType;
+                       if($buttonType==1)
+                       {
+                       td.innerHTML = "<button>edycja</button>";
+                       }
+                       else
+                       {
+                        td.innerHTML = '<button onclick="deleteRow(this)">klik</button>';
+                       }
+                        rows[i].appendChild(td);    
+                    }
                  }
 
                  function LoadSavedData()
@@ -39,6 +72,12 @@
                    var sentData=sessionStorage.getItem('basketresult');
                    var tableid = document.getElementById("Order");
                    tableid.innerHTML=sentData;
+
+                   //var rowsNumber = tebleid.rows.length;
+
+                   AddColumn(1,tableid);
+                   AddColumn(2,tableid);
+
                     
                  }
 
@@ -94,7 +133,7 @@
 
                  while($wiersz = $wynik->fetch_assoc())
                 {
-                        $thisid = $wiersz["Id"];
+                        $thisid = $wiersz["Name"];
                         $ingredientString = $wiersz["Ingredients"];
                         $fullIngredients ="";
                         $tempHelp="";
@@ -126,7 +165,7 @@
                         }
                     
 
-                            $thisid = "m".$thisid;
+                            $thisid = $thisid;
                         echo <<<HTML
                     <div class="menu_cell" >
                         <button id= $thisid onclick="AddToOrder(id)">
