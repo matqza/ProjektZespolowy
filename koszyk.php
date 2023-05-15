@@ -8,6 +8,7 @@
             
           function SetAddVisibility($setDiv)
                  {
+                    
                    // Console.console.log($setDiv);
                     var x = document.getElementById($setDiv);
                 if(x.style.display=="none")
@@ -56,7 +57,8 @@
                        // td.innerText = $buttonType;
                        if($buttonType==1)
                        {
-                         var a = '<button onclick="SetAddVisibility(leftPanel)">edycja</button>';
+                        var hh="leftPanel";
+                         var a = '<button id="ed'+i+'" onclick="SetAddVisibility(\'leftPanel\')">edycja</button>';
                         td.innerHTML = a;
                       //  var str= ' echo <<< HTML <button id="e".i onclick="SetAddVisibility("leftPanel")"> <p>edycja</p> </button> </div> HTML ';
                         //td.innerHTML = str;

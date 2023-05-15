@@ -89,14 +89,14 @@
                     
 
                             $thisName = "m".$thisName;
-                        echo <<<HTML
-                    <div class="menu_cell" >
-                        <button id= $thisName onclick="AddToBasket(id)">
-                            <p class="menuName"></p>
-                        <p class="menuIngrediants">{$fullIngredients}</p>
-                        </button>
-                    </div>
-                    HTML;
+                            echo <<<HTML
+                        <div class="menu_cell" >
+                            <button id= $thisName onclick="AddToBasket(id)">
+                                <p class="menuName"></p>
+                            <p class="menuIngrediants">{$fullIngredients}</p>
+                            </button>
+                        </div>
+                        HTML;
                     //AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
 
 
