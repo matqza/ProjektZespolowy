@@ -1,13 +1,20 @@
-header
-{
-	position: fixed;
-	width: 70%;
+header {
+	position: sticky;
 	top: 0;
-	right: 0;
+	width: 70%;
 	display: flex;
 	align-items: center;
-	justify-content: space-between; 
+	justify-content: space-between;
 	padding: 40px 15%;
+	background-color: rgba(255, 255, 255, 0.9); /* Dodatkowe tło dla lepszej widoczności */
+	z-index: 100; /* Ustalamy z-index, aby header wyświetlał się na wierzchu */
+}
+
+body 
+{
+	background-image: url('imagePizzaWeb.jpg');
+	background-size: cover;
+	min-height: 100%; /* Dodane */
 }
 
 .options
@@ -65,7 +72,7 @@ section
 {
 	text-align: center;
 	padding: 40px;
-	background-color: #f8f8f8;
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
 }
   
 .about-text p 
@@ -92,7 +99,13 @@ section
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 40px;
-	background-color: #f8f8f8;
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+}
+
+.menu-text img 
+{
+	width: 50px;
+	height: auto;
 }
   
 .menu-text h2 
@@ -127,40 +140,57 @@ section
 
 
  /* section profile */
-.profile 
-{
-	padding: 50px;
-	background-color: #f7f7f7;
+ .profile {
+	padding: 20px;
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+	max-width: 800px;
+	margin: 0 auto;
 }
-  
-.profile-text 
-{
+
+.profile-text {
 	text-align: center;
 }
-  
-.profile-text h2 
-{
+
+.profile-text h2 {
 	font-size: 24px;
 	margin-bottom: 20px;
 }
-  
-.profile-info 
-{
+
+.profile-info {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-gap: 20px;
+	grid-gap: 10px;
 }
-  
-.profile-info p 
-{
+
+.profile-info p {
 	font-size: 16px;
 	line-height: 1.4;
 	margin: 0;
 }
-  
-.profile-info strong 
-{
+
+.profile-info strong {
 	font-weight: bold;
+}
+/* end section profile */
+
+
+ /* section promo */
+.promo 
+{
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+	padding: 20px;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.promo-text 
+{
+	text-align: center;
+}
+
+.promo-info 
+{
+	margin-top: 20px;
 }
 /* end section profile */
   
