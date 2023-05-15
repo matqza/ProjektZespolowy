@@ -8,6 +8,7 @@
             
           function SetAddVisibility($setDiv)
                  {
+                   // Console.console.log($setDiv);
                     var x = document.getElementById($setDiv);
                 if(x.style.display=="none")
                     x.style.display="block";
@@ -16,13 +17,17 @@
 
                  }
 
+                 //deletes a row in table "Order"
                  function deleteRow( $ill)
                  {
                     var x = document.getElementById("Order");
                     $ill.closest('tr').remove();
+
+                    //updates the value in session
+                        sessionStorage.setItem('basketresult',x.innerHTML);
                  }
 
-
+                 //adds an item into "Order" table
                  function AddToOrder($pizzaID)
                  {
                     var x = document.getElementById("Order");
@@ -34,8 +39,12 @@
                     newCell1.innerHTML = "<button>edycja</button>";
                     newCell1 = newRow.insertCell();
                     newCell1.innerHTML = '<button onclick="deleteRow(this)">klik</button>';
+
+                    //updates the value in session
+                        sessionStorage.setItem('basketresult',x.innerHTML);
                  }
 
+                 //adds a column into table with 2 types of buttons
                  function AddColumn( $buttonType,  $table)
                  {
                    // var table = document.getElementById("tableTest");
@@ -47,7 +56,10 @@
                        // td.innerText = $buttonType;
                        if($buttonType==1)
                        {
-                       td.innerHTML = "<button>edycja</button>";
+                         var a = '<button onclick="SetAddVisibility(leftPanel)">edycja</button>';
+                        td.innerHTML = a;
+                      //  var str= ' echo <<< HTML <button id="e".i onclick="SetAddVisibility("leftPanel")"> <p>edycja</p> </button> </div> HTML ';
+                        //td.innerHTML = str;
                        }
                        else
                        {
@@ -59,25 +71,17 @@
 
                  function LoadSavedData()
                  {
-                    /*
-                    var myArray = sessionStorage.getItem('myArray');
-                    var sentData=localStorage.getItem("basketresult");
-                    var x = document.getElementById("Order");
-                    var newRow = x.insertRow();
-                    var newCell1 = newRow.insertCell();
-                    var newText = document.createTextNode(sentData[1][1]);
-                    newCell1.appendChild(newText);
-                    */
-                  
                    var sentData=sessionStorage.getItem('basketresult');
                    var tableid = document.getElementById("Order");
                    tableid.innerHTML=sentData;
 
-                   //var rowsNumber = tebleid.rows.length;
-
+                   if(tableid.rows[0].cells.length!=3)
+                   {
                    AddColumn(1,tableid);
                    AddColumn(2,tableid);
+                   }
 
+                    
                     
                  }
 

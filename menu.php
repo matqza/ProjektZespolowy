@@ -165,6 +165,7 @@
                         x.innerHTML = '';
                     }
                 
+                    //dodaje zawartość koszyka do sesji
                     function SubmitBasket()
                     {
                         var x = document.getElementById("BasketTable");
