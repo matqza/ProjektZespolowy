@@ -71,11 +71,13 @@
                     }
                  }
 
+                 //loads data into table after you open this page
                  function LoadSavedData()
                  {
                    var sentData=sessionStorage.getItem('basketresult');
                    var tableid = document.getElementById("Order");
                    tableid.innerHTML=sentData;
+
 
                    if(tableid.rows[0].cells.length!=3)
                    {
@@ -100,7 +102,32 @@
 <body onload="LoadSavedData();">
     <div id="container">
         <div id="leftPanel">
+            <?php
+                $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
+
+
+                if(mysqli_connect_errno())
+                {
+                    echo "connection failed";
+                    exit();
+                }
             
+                $wynik = $conn->query("select * from ingredients");
+      
+                while($wiersz = $wynik->fetch_assoc())
+                {
+                    $rowId=$wiersz['Id'];
+                    $rowName=['Ingredient'];
+                    $checkboxId="checkbox".$rowId;
+
+                    echo <<<HTML
+                        <div class="leftPanelEdit" >
+                            <!--naprawić value-->
+                        <input type="checkbox" id=$checkboxId value="oiiaoiia">
+                        </div>
+                        HTML;
+                }
+            ?>
         </div>
 
         <header >
@@ -121,8 +148,8 @@
 
 
             <div id="addToOrder">
-                    <?php
-        $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
+        <?php
+             $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
 
 
             if(mysqli_connect_errno())
@@ -183,7 +210,7 @@
                             </button>
                         </div>
                         HTML;
-    //AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
+           //AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
 
 
                         //AddToBasket($pizzaID,$pizzaIng,$pizzaCostS,$pizzaCostL)
