@@ -31,11 +31,15 @@
                  //adds an item into "Order" table
                  function AddToOrder($pizzaID)
                  {
+
+                    var bttn = document.getElementById($pizzaID);
                     var x = document.getElementById("Order");
                     var newRow = x.insertRow();
                     var newCell1 = newRow.insertCell();
                     var newText = document.createTextNode($pizzaID);
                     newCell1.appendChild(newText);
+                    newCell1 = newRow.insertCell();
+                    newCell1.innerHTML = bttn.value;
                     newCell1 = newRow.insertCell();
                     newCell1.innerHTML = "<button>edycja</button>";
                     newCell1 = newRow.insertCell();
@@ -123,7 +127,7 @@
                     echo <<<HTML
                         <div class="leftPanelEdit" >
                             <!--naprawić value-->
-                        <input class="leftPanelEditCheckbox" type="checkbox" id=$checkboxId value="oiiaoiia">
+                        <input class="leftPanelEditCheckbox" type="checkbox" id=$checkboxId value="$rowName">
                         <label class="leftPanelEditLabel" for="vehicle1">{$rowName}</label><br>
                         </div>
                         HTML;
@@ -182,6 +186,10 @@
                             {
                                 if($ingredientString[$number]==","  || $number+1==strlen($ingredientString))
                                 {
+                                    if($number+1==strlen($ingredientString))
+                                    {
+                                        $tempHelp .= $ingredientString[$number];
+                                    }
                                     $thisIngrediant = $conn->query("select * from ingredients where id=$tempHelp");
                                 
                                         $mytemprow = $thisIngrediant->fetch_row();
@@ -205,7 +213,7 @@
                                 $thisid = $thisid;
                             echo <<<HTML
                         <div class="menu_cell" >
-                            <button id= $thisid onclick="AddToOrder(id)">
+                            <button id= $thisid onclick="AddToOrder(id)" value="$fullIngredients">
                                 <p class="menuName"></p>
                             <p class="menuIngrediants">{$fullIngredients}</p>
                             </button>

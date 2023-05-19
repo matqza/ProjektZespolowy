@@ -68,6 +68,10 @@
                         {
                             if($ingredientString[$number]==","  || $number+1==strlen($ingredientString))
                             {
+                                if($number+1==strlen($ingredientString))
+                                {
+                                    $tempHelp .= $ingredientString[$number];
+                                }
                                 $thisIngrediant = $conn->query("select * from ingredients where id=$tempHelp");
                             
                                     $mytemprow = $thisIngrediant->fetch_row();
@@ -91,9 +95,9 @@
                             $thisName = "m".$thisName;
                             echo <<<HTML
                         <div class="menu_cell" >
-                            <button id= $thisName onclick="AddToBasket(id)">
-                                <p class="menuName"></p>
-                            <p class="menuIngrediants">{$fullIngredients}</p>
+                            <button id= $thisName onclick="AddToBasket(id)" value="$fullIngredients">
+                            <!--<p class="menuIngrediants">{$fullIngredients}</p>-->
+                            {$fullIngredients}
                             </button>
                         </div>
                         HTML;
@@ -144,12 +148,18 @@
 
                     function AddToBasket($pizzaID)
                     {
+                        var menuButton = document.getElementById($pizzaID);
+                        var pizzaIng = menuButton.value;
+
                         $pizzaID = $pizzaID.substring(1);
                         var x = document.getElementById("BasketTable");
                         var newRow = x.insertRow();
                         var newCell1 = newRow.insertCell();
                         var newText = document.createTextNode($pizzaID);
+                        var newCell2 = newRow.insertCell();
+                        var newText2 = document.createTextNode(pizzaIng);
                         newCell1.appendChild(newText);
+                        newCell2.appendChild(newText2);
 
 
                     
