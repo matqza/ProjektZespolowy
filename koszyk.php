@@ -117,13 +117,14 @@
                 while($wiersz = $wynik->fetch_assoc())
                 {
                     $rowId=$wiersz['Id'];
-                    $rowName=['Ingredient'];
+                    $rowName=$wiersz['Ingredient'];
                     $checkboxId="checkbox".$rowId;
 
                     echo <<<HTML
                         <div class="leftPanelEdit" >
                             <!--naprawić value-->
-                        <input type="checkbox" id=$checkboxId value="oiiaoiia">
+                        <input class="leftPanelEditCheckbox" type="checkbox" id=$checkboxId value="oiiaoiia">
+                        <label class="leftPanelEditLabel" for="vehicle1">{$rowName}</label><br>
                         </div>
                         HTML;
                 }
