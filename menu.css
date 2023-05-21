@@ -193,6 +193,39 @@ section
 	margin-top: 20px;
 }
 /* end section profile */
+
+.cart-text { /* koszyk */
+	font-size: 19px;
+	font-weight: bold;
+	color: black;
+}
+
+.cart-icon { /* koszyk */
+	font-size: 32px; 
+}
+
+/* stopka */
+footer {
+	padding: 20px;
+	background-color: rgba(248, 248, 248, 0.8);
+	text-align: center;
+}
+
+.social-media {
+	margin-bottom: 10px;
+}
+
+.social-media a {
+	margin: 0 5px;
+	font-size: 24px;
+	color: var(--main-color);
+}
+
+p {
+	font-size: 14px;
+	margin: 0;
+}
+/* end stopka */
   
 
 
