@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Koszyk zamówień</title>
+  <link rel="stylesheet" type="text/css" href="koszyk.css">
+</head>
+<body>
+  <h1>Koszyk zamówień</h1>
+  <div id="cart">
+    <table>
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Cena</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+        <!-- Tutaj będą wyświetlane zamówione pizze -->
+      </tbody>
+    </table>
+    <h3 id="total-price">Łączna cena: 0 zł</h3>
+  </div>
+  <!-- Przycisk do złożenia zamówienia -->
+  <button id="checkout-btn">Złóż zamówienie</button>
+  <button id="clear-cart-btn">Wyczyść koszyk</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
