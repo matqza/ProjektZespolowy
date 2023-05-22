@@ -1,0 +1,72 @@
+body 
+{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+  
+h1 
+{
+    text-align: center;
+}
+  
+#cart 
+{
+    margin-top: 20px;
+}
+  
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+th, td 
+{
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+  
+thead
+{
+    background-color: #f9f9f9;
+}
+  
+#total-price 
+{
+    text-align: right;
+    margin-top: 10px;
+}
+  
+#checkout-btn 
+{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+  
+#checkout-btn:hover 
+{
+    background-color: #45a049;
+}
+
+#clear-cart-btn {
+    display: block;
+    margin: 10px auto; /* Wyśrodkowanie w pionie i poziomie */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #clear-cart-btn:hover {
+    background-color: #d32f2f;
+  }
