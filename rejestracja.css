@@ -13,13 +13,13 @@ display: flex;
 justify-content: center;
 align-items: center;
 min-height: 100vh;
-background: #1f293a;
+background-image: url("R.jpg");
 }
 
 h2 
 {
 	font-size: 50px;
-	color:#0ef;
+	color: #FF5722;
 	text-align: center;
 }
 
@@ -47,7 +47,7 @@ h2
 	height: 50px;
 	background: transparent;
 	border-radius: 50px;
-	border: 2px solid;
+	border: 2px solid #FF5722; /* Pomarańczowy obramowanie */
 	font-size: 1em;
 	color: #fff;
 	padding: 0 20px;
@@ -57,7 +57,7 @@ h2
 .input-box input:focus,
 .input-box input:valid
 {
-	border-color:#0ef;
+	border-color:#FF5722;
 }
 
 .input-box label
@@ -66,8 +66,8 @@ h2
 	top: 50%;
 	left:20px;
 	transform: translateY(-50%);
-	font-size: 1em;
-	color:#fff
+	font-size: 1.3em;
+	color:rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
 }
 
 .input-box input:focus~label,
@@ -75,8 +75,7 @@ h2
 {
 	top:1px;
 	font-size: .8em;
-	background: #1f293a;
-	color: #0ef
+	color:rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
 }
 
 .forgot-password
@@ -101,7 +100,7 @@ h2
 {
 	width:100%;
 	height:45px;
-	background: #0ef;
+	background: #FF5722;
 	border:none;
 	outline:none;
 	border-radius: 40px;
@@ -120,7 +119,7 @@ h2
 .signup a
 {
 	font-size: 1em;
-	color: #0ef;
+	color: #FF5722;
 	text-decoration: none;
 	font-weight: 600;
 }
@@ -129,6 +128,12 @@ h2
 {
 	text-decoration: underline;
 }
+
+.forgot-password a {
+	font-size: 16px;
+	color: #FF5722; /* Zmieniony kolor - w tym przypadku, odcień pomarańczowego */
+	text-decoration: none;
+  }
 
 
 
