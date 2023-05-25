@@ -3,19 +3,55 @@
 <head>
     <script>
 
+        function CheckboxChange($checkbox) 
+        {
+            var orderTable = document.getElementById("Order");
+            var x = document.getElementById("leftPanel");
+            var newtext = orderTable.rows[x.value].cells[1].innerHTML;
+            if($checkbox.checked)
+            {
+              
+                newtext=newtext+$checkbox.value;   
+                console.log("on");
+                console.log(newtext);
+                orderTable.rows[x.value].cells[1].innerHTML = newtext;
+                return 0;
+            }
+                newtext =newtext.replace($checkbox.value, "");
+                orderTable.rows[x.value].cells[1].innerHTML = newtext;
+                console.log("off");
+                console.log(newtext);
+            
+            
+            
+        }
+
         function MarkCheckboxes($ingredientText)
         {
             var table = document.getElementById("Order");
-            var newtext = table.rows[1].cells[1].innerHTML;
+            var newtext = table.rows[$ingredientText].cells[1].innerHTML;
             console.log(newtext);
             console.log($ingredientText);
-           // table.rows[1].cells[1].text= newtext.substring(1);
+           
+            var checkboxes = document.getElementsByClassName("leftPanelEditCheckbox");
+            for (var i = 0; i < checkboxes.length; i++) 
+            {
+                if(newtext.includes(checkboxes.item(i).value))
+                {
+                    checkboxes.item(i).checked=true;
+                }
+                else
+                {
+                    checkboxes.item(i).checked=false;
+                }
+            }
 
         }
 
           function EditItem($button)
           {
             var x = document.getElementById("leftPanel");
+            x.value=$button;
                 if(x.style.display=="none")
                 {
                     x.style.display="block";
@@ -141,13 +177,13 @@
                 while($wiersz = $wynik->fetch_assoc())
                 {
                     $rowId=$wiersz['Id'];
-                    $rowName=$wiersz['Ingredient'];
+                    $rowName=$wiersz['Ingredient']." ";
                     $checkboxId="checkbox".$rowId;
 
                     echo <<<HTML
                         <div class="leftPanelEdit" >
                             <!--naprawić value-->
-                        <input class="leftPanelEditCheckbox" type="checkbox" id=$checkboxId value="$rowName">
+                        <input class="leftPanelEditCheckbox" type="checkbox" id=$checkboxId value="$rowName" onclick="CheckboxChange(this)">
                         <label class="leftPanelEditLabel" for="vehicle1">{$rowName}</label><br>
                         </div>
                         HTML;

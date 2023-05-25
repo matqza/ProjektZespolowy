@@ -81,7 +81,7 @@
                                         $fullIngredients .=$mytemprow[1];
                                         break;
                                     }
-                                    $fullIngredients .=$mytemprow[1] . ", ";
+                                    $fullIngredients .=$mytemprow[1] . " ";
                                 $tempHelp="";
                             }
                             else
