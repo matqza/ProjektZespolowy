@@ -3,7 +3,27 @@
 <head>
     <script>
 
-          
+        function MarkCheckboxes($ingredientText)
+        {
+            var table = document.getElementById("Order");
+            var newtext = table.rows[1].cells[1].innerHTML;
+            console.log(newtext);
+            console.log($ingredientText);
+           // table.rows[1].cells[1].text= newtext.substring(1);
+
+        }
+
+          function EditItem($button)
+          {
+            var x = document.getElementById("leftPanel");
+                if(x.style.display=="none")
+                {
+                    x.style.display="block";
+                    MarkCheckboxes($button);
+                }
+                else
+                x.style.display="none"
+          }
     
             
           function SetAddVisibility($setDiv)
@@ -62,14 +82,14 @@
                        if($buttonType==1)
                        {
                         var hh="leftPanel";
-                         var a = '<button id="ed'+i+'" onclick="SetAddVisibility(\'leftPanel\')">edycja</button>';
+                         var a = '<button id="ed'+i+'" onclick="EditItem('+i+')" class="basketButtons">edycja</button>';
                         td.innerHTML = a;
                       //  var str= ' echo <<< HTML <button id="e".i onclick="SetAddVisibility("leftPanel")"> <p>edycja</p> </button> </div> HTML ';
                         //td.innerHTML = str;
                        }
                        else
                        {
-                        td.innerHTML = '<button onclick="deleteRow(this)">klik</button>';
+                        td.innerHTML = '<button onclick="deleteRow(this)" class="basketButtons">klik</button>';
                        }
                         rows[i].appendChild(td);    
                     }
