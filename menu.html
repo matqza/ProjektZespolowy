@@ -7,18 +7,23 @@
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"> <!-- ikonki strona -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<title>Pizzeria</title>
 </head>
 <body>
 
 	<!-- option section -->
+	<!-- option section -->
 	<header>
+		<div class="logo-container">
 		<a href="#" class="logo"><img src="img/logo.jpg" width="90px" height="90px"></a>
+		<h1 class="logo-text animated bounce">Pizzerro</h1>
+		</div>
 		<ul class="options">
-			<li><a href="#menu">Menu</a></li>
-			<li><a href="#about">O nas</a></li>
-			<li><a href="#profile">Mój profil</a></li>
-			<li><a href="#promo">Promocje</a></li>
+		  <li><a href="#menu" class="nav-link">Menu</a></li>
+		  <li><a href="#about" class="nav-link">O nas</a></li>
+		  <li><a href="#profile" class="nav-link">Mój profil</a></li>
+		  <li><a href="#promo" class="nav-link">Promocje</a></li>
 		</ul>
 
 		<div class="icons">
@@ -39,9 +44,12 @@
 				</div>
 				<br> 
 				<br> 
-				W przeciwieństwie do rozpowszechnionych opinii, Lorem Ipsum nie jest tylko przypadkowym tekstem. Ma ono korzenie w klasycznej łacińskiej literaturze z 45 roku przed Chrystusem, czyli ponad 2000 lat temu! Richard McClintock, wykładowca łaciny na uniwersytecie Hampden-Sydney w Virginii, przyjrzał się uważniej jednemu z najbardziej niejasnych słów w Lorem Ipsum – consectetur – i po wielu poszukiwaniach odnalazł niezaprzeczalne źródło: Lorem Ipsum pochodzi z fragmentów (1.10.32 i 1.10.33) „de Finibus Bonorum et Malorum”, czyli „O granicy dobra i zła”, napisanej właśnie w 45 p.n.e. przez Cycerona. Jest to bardzo popularna w czasach renesansu rozprawa na temat etyki. Pierwszy wiersz Lorem Ipsum, „Lorem ipsum dolor sit amet...” pochodzi właśnie z sekcji 1.10.32.
-
-				Standardowy blok Lorem Ipsum, używany od XV wieku, jest odtworzony niżej dla zainteresowanych. Fragmenty 1.10.32 i 1.10.33 z „de Finibus Bonorum et Malorum” Cycerona, są odtworzone w dokładnej, oryginalnej formie, wraz z angielskimi tłumaczeniami H. Rackhama z 1914 roku.
+				<h2 class="animated fadeIn">
+					<i class="fas fa-chart-bar"></i> Nasze Statystyki
+				  </h2>
+				<p>Ilość zamówień w naszej pizzerii: <span id="orderCount" class="animated fadeIn">293</span></p>
+				<p>Ilość klientów: <span id="customerCount" class="animated fadeIn">108</span></p>
+				<p>Średni czas oczekiwania: <span id="averageWaitTime" class="animated fadeIn">30 minut</span></p>
 			</p>
 		</div>
 	</section>

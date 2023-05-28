@@ -10,6 +10,52 @@ header {
 	z-index: 100; /* Ustalamy z-index, aby header wyświetlał się na wierzchu */
 }
 
+.logo-container 
+{
+	display: flex;
+	align-items: center;
+}
+  
+.logo-text {
+	font-family: "Font Awesome 5 Free", sans-serif; 
+	font-size: 24px;
+	margin-left: 10px;
+	color: #FF8C00;
+	animation-name: bounceShine;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+  }
+  
+@keyframes bounceShine /* animacja obok logo napisu pizzero */
+{
+	0% {
+	  color: #FF8C00;
+	  text-shadow: none;
+	  transform: translateY(0);
+	}
+	25% {
+	  color: #FFD700;
+	  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+	  transform: translateY(-5px);
+	}
+	50% {
+	  color: #FF8C00;
+	  text-shadow: none;
+	  transform: translateY(0);
+	}
+	75% {
+	  color: #FFD700;
+	  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+	  transform: translateY(-2px);
+	}
+	100% {
+	  color: #FF8C00;
+	  text-shadow: none;
+	  transform: translateY(0);
+	}
+}
+
 body 
 {
 	background-image: url('imagePizzaWeb.jpg');
@@ -73,6 +119,7 @@ section
 	text-align: center;
 	padding: 40px;
 	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+	font-family: "Arial", sans-serif;
 }
   
 .about-text p 
@@ -80,6 +127,7 @@ section
 	font-size: 18px;
 	line-height: 1.5;
 	color: #333;
+	margin: 10px 0;
 }
   
 .about-text p:first-child 
@@ -90,6 +138,56 @@ section
 .about-text p:last-child 
 {
 	margin-bottom: 0;
+}
+  
+/* Ikony z biblioteki Font Awesome */
+.about-text span::before 
+{
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	margin-right: 5px;
+}
+  
+#orderCount::before 
+{
+	content: "\f0d1";
+}
+  
+#customerCount::before 
+{
+	content: "\f007";
+}
+  
+#averageWaitTime::before 
+{
+	content: "\f253";
+}
+
+.animated 
+{
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite; /* Animacja będzie działać w pętli */
+}
+  
+.fadeIn 
+{
+	animation-name: bounceIn;
+}
+  
+@keyframes bounceIn 
+{
+	0% {
+	  opacity: 0;
+	  transform: scale(0.3);
+	}
+	70% {
+	  transform: scale(1.1);
+	}
+	100% {
+	  opacity: 1;
+	  transform: scale(1);
+	}
 }
  /* end section o nas */
 
