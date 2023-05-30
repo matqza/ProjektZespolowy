@@ -1,0 +1,143 @@
+* 
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+
+}
+
+body 
+{
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background-image: url("R.jpg");
+}
+
+h2 
+{
+	font-size: 50px;
+	color: #FF5722;
+	text-align: center;
+}
+
+.login-box
+{
+	position: relative;
+	width:550px;
+}
+
+.login-box form
+{
+	width: 100%;
+	padding: 0 70px;
+}
+
+.input-box
+{
+	position: relative;
+	margin: 35px 0;
+}
+
+.input-box input
+{
+	width:100%;
+	height: 50px;
+	background: transparent;
+	border-radius: 50px;
+	border: 2px solid #FF5722; /* Pomarańczowy obramowanie */
+	font-size: 1em;
+	color: #fff;
+	padding: 0 20px;
+	outline: none;
+}
+
+.input-box input:focus,
+.input-box input:valid
+{
+	border-color:#FF5722;
+}
+
+.input-box label
+{
+	position:absolute;
+	top: 50%;
+	left:20px;
+	transform: translateY(-50%);
+	font-size: 1.3em;
+	color:rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label
+{
+	top:1px;
+	font-size: .8em;
+	color:rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+}
+
+.forgot-password
+{
+	margin: -15px 0 10px;
+	text-align: center;
+}
+
+.forgot-password a 
+{
+	font-size: .85em;
+	color:#fff;
+	text-decoration: none;
+}
+
+.forgot-password a:hover
+{
+	text-decoration: underline;
+}
+
+.btn
+{
+	width:100%;
+	height:45px;
+	background: #FF5722;
+	border:none;
+	outline:none;
+	border-radius: 40px;
+	cursor:pointer;
+	font-size:1em;
+	color:#1f293a;
+	font-weight: 600;
+}
+
+.signup
+{
+	margin: 20px 0 10px;
+	text-align: center;
+}
+
+.signup a
+{
+	font-size: 1em;
+	color: #FF5722;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.signup a:hover
+{
+	text-decoration: underline;
+}
+
+.forgot-password a {
+	font-size: 16px;
+	color: #FF5722; /* Zmieniony kolor - w tym przypadku, odcień pomarańczowego */
+	text-decoration: none;
+  }
+
+
+
+
+
+
+

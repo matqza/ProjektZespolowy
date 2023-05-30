@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+
+    <title>Register</title>
+</head>
+<body>
+<main>
+
+
+    <form class="container" action="script.php" method="POST">
+
+        <div class="icon-container">
+            <h1 class="main-label">Zarejestruj się</h1>
+            <div class="Label">
+                <div>
+                    <center>
+                        <label for="firstName" class="label2"><b>Imię:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input placeholder="Wpisz swoje imię" name="firstName" class="input" id="firstName" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="surname" class="label2"><b>Nazwisko:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input placeholder="Wpisz nazwisko" name="surname" class="input" id="surname" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="phoneNumber" class="label2"><b>Numer telefonu:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input placeholder="Wpisz numer" name="number" class="input" id="number" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="adress" class="label2"><b>Adres zamieszkania:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input placeholder="Wpisz adres" name="adress" class="input" id="adress" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="username" class="label2"><b>Nazwa użytkownika:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input placeholder="Wpisz swoją nazwę użytkownika" name="username" class="input" id="username" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="email" class="label2"><b>Email:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input placeholder="Wpisz email" name="email" class="input" id="email" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="password" class="label2"><b>Hasło:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input type="password" placeholder="Wpisz hasło" name="password" class="input" id="password" required>
+                </div>
+                <div>
+                    <center>
+                        <label for="password2" class="label2"><b>Powtórz hasło:</b></label>
+                    </center>
+                </div>
+                <div>
+                    <input type="password" placeholder="Potwierdź hasło" name="password2" class="input" id="password2" required>
+                </div>
+                <div>
+                    <center>
+                        <button type="submit" class="button-register" name="button-register">Zarejestruj
+                    </center>
+                    </button>
+                </div>
+                <div>
+                    <center>
+                        <div>
+                            <label for="agree" class="agreement">
+                                <input type="checkbox" name="agree" id="agree" value="yes"/> Zgadzam się z
+                                <a href="#" title="term of services"> polityką prywatności</a>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="agreement">Już masz założone konto?<a href="http://localhost/projekt/login/login.html">Zaloguj się tutaj</a></label>
+                        </div>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>
