@@ -57,3 +57,11 @@ div.items p {
 div.items p:target {
   display: block;
 }
+
+.PanelEdit {
+  display: none;
+}
+
+.PanelEdit.active {
+  display: block;
+}
