@@ -1,4 +1,4 @@
-html <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Strona z panelem admina</title>
@@ -8,25 +8,20 @@ html <!DOCTYPE html>
   <header>
     <h1>Panel Admina</h1>
   </header>
-  <nav>
-    <ul>
-      <li><a href="#">Zarządzanie użytkownikami</a></li>
-      <li><a href="#">Zarządzanie zamówieniami</a></li>
-      <li><a href="#">Wyloguj</a></li>
+  <nav class="tabs">
+    <ul class="tab-links">
+      <li><a href="#item1">item 1</a></li>
+      <li><a href="#item2">item 2</a></li>
+      <li><a href="#item3">item 3</a></li>
+      <li><a href="#default">wyczyść</a></li>
     </ul>
-    <div class="items">
-      <p id="item1">... Zarządzanie użytkownikami...
-      <p id="item2">... Zarządzanie zamówieniami...
-      <p id="item3">...
-      <p id="default"><!-- domyślnie nie jest wyświetlany żaden tekst -->
-    </div>
   </nav>
-  <section>
-    <h2>Witaj, Admin!</h2>
-    <p>Tutaj możesz zarządzać treścią i użytkownikami swojej strony.</p>
-  </section>
-  <footer>
-    <p>Wszelkie prawa zastrzeżone &copy; 2023</p>
-  </footer>
+  <div class="items">
+    <p id="item1">... item 1...</p>
+    <p id="item2">... item 2...</p>
+    <p id="item3">... item 3...</p>
+    <p id="default"><!-- domyślnie nie jest wyświetlany żaden tekst --></p>
+  </div>
+  <script src="tabs.js"></script>
 </body>
 </html>
