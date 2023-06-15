@@ -65,3 +65,10 @@ div.items p:target {
 .PanelEdit.active {
   display: block;
 }
+
+  input {
+    margin-bottom: 10px;
+  }
+  button {
+    margin-bottom: 10px;
+  }
