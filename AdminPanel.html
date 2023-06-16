@@ -21,33 +21,44 @@
     <p id="item1" >Strona główna</a></p>
     <p id="item2">
       <input placeholder="ID" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
-      <input placeholder="gówno" type="number"><br>
+      <input placeholder="Imię " type="text"><br>
+      <input placeholder="Nazwisko" type="text"><br>
+      <input placeholder="Numer telefonu" type="number"><br>
+      <input placeholder="Adres zamieszkania" type="text"><br>
+      <input placeholder="Nazwa Użytkownika" type="text"><br>
+      <input placeholder="Email" type="text"><br>
+      <input placeholder="Hasło" type="text"><br>
+      <input placeholder="Typ konta" type="text"><br>
 
         <button>Dodaj użytkownika</button><br>
         <button>Wybierz użytkownika</button><br>
         <button>Przycisk 2</button><br>
+        <div id="myList"></div>
+       
     </p>
     <p id="item3">Zamówienia</p>
     <p id="item4">Wyloguj się</p>
     <p id="default"><!-- domyślnie nie jest wyświetlany żaden tekst --></p>
   </div>
-  
-  <div class="PanelEdit">
-    <p id="PanelEdit1"> 
-      <button>Przycisk 1</button>
-      <button>Przycisk 2</button>
-    </p>
-    <p id="PanelEdit2">... Użytkownicy...</p>
-    <p id="PanelEdit3">... Zamówienia...</p>
-    <p id="PanelEdit4">... Wyloguj się...</p>
-    <p id="default"><!-- domyślnie nie jest wyświetlany żaden tekst --></p>
+  <div class="myList">
+  <script>
+    // Przykładowa tablica obiektów
+    var myArray = [
+      { name: 'Obiekt 1', value: 10 },
+      { name: 'Obiekt 2', value: 20 },
+      { name: 'Obiekt 3', value: 30 }
+    ];
+
+    // Pobieranie elementu o id 'myList'
+    var myList = document.getElementById('myList');
+
+    // Tworzenie elementów listy i dodawanie ich do 'myList'
+    for (var i = 0; i < myArray.length; i++) {
+      var listItem = document.createElement('li');
+      listItem.textContent = myArray[i].name + ' - ' + myArray[i].value;
+      myList.appendChild(listItem);
+    }
+  </script>
   </div>
   <script src="tabs.js"></script>
 </body>
