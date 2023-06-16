@@ -11,17 +11,17 @@
   <nav class="tabs">
     <ul class="tab-links">
       <li><a href="#item1">Strona główna</a></li>
-      <li> <a href="#item2">Użytkownicy</a> </li>
+      <li><a href="#item2">Użytkownicy</a></li>
       <li><a href="#item3">Zamówienia</a></li>
       <li><a href="#item4">Wyloguj się</a></li>
       <li><a href="#default">wyczyść</a></li>
     </ul>
   </nav>
   <div class="items">
-    <p id="item1" >Strona główna</a></p>
+    <p id="item1">Strona główna</p>
     <p id="item2">
       <input placeholder="ID" type="number"><br>
-      <input placeholder="Imię " type="text"><br>
+      <input placeholder="Imię" type="text"><br>
       <input placeholder="Nazwisko" type="text"><br>
       <input placeholder="Numer telefonu" type="number"><br>
       <input placeholder="Adres zamieszkania" type="text"><br>
@@ -30,18 +30,46 @@
       <input placeholder="Hasło" type="text"><br>
       <input placeholder="Typ konta" type="text"><br>
 
-        <button>Dodaj użytkownika</button><br>
-        <button>Wybierz użytkownika</button><br>
-        <button>Przycisk 2</button><br>
-        <div id="myList"></div>
-       
+      <button id="addUserButton">Dodaj użytkownika</button><br>
+      <button id="selectUserButton">Wybierz użytkownika</button><br>
+      <button>Przycisk 2</button><br>
+      <div id="userList"></div>
     </p>
     <p id="item3">Zamówienia</p>
     <p id="item4">Wyloguj się</p>
     <p id="default"><!-- domyślnie nie jest wyświetlany żaden tekst --></p>
   </div>
-  <div class="myList">
   <script>
+    var addUserButton = document.getElementById('addUserButton');
+    var selectUserButton = document.getElementById('selectUserButton');
+    var userList = document.getElementById('userList');
+
+    addUserButton.addEventListener('click', function() {
+      userList.style.display = 'block';
+    });
+
+    selectUserButton.addEventListener('click', function() {
+      userList.style.display = 'block';
+    });
+
+    // Funkcja do ukrywania listy użytkowników
+    function hideUserList() {
+      userList.style.display = 'none';
+    }
+
+    // Początkowo ukryj listę użytkowników
+    hideUserList();
+
+    // Obsługa zmiany zakładki
+    window.addEventListener('hashchange', function() {
+      var currentHash = window.location.hash;
+      if (currentHash !== '#item2') {
+        hideUserList();
+      } else {
+        userList.style.display = 'block';
+      }
+    });
+
     // Przykładowa tablica obiektów
     var myArray = [
       { name: 'Obiekt 1', value: 10 },
@@ -49,17 +77,13 @@
       { name: 'Obiekt 3', value: 30 }
     ];
 
-    // Pobieranie elementu o id 'myList'
-    var myList = document.getElementById('myList');
-
-    // Tworzenie elementów listy i dodawanie ich do 'myList'
+    // Tworzenie elementów listy i dodawanie ich do 'userList'
     for (var i = 0; i < myArray.length; i++) {
       var listItem = document.createElement('li');
       listItem.textContent = myArray[i].name + ' - ' + myArray[i].value;
-      myList.appendChild(listItem);
+      userList.appendChild(listItem);
     }
   </script>
-  </div>
   <script src="tabs.js"></script>
 </body>
 </html>

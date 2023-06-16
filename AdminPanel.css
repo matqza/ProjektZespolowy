@@ -72,10 +72,3 @@ div.items p:target {
   button {
     margin-bottom: 10px;
   }
-  .myList {
-    display: none;
-  }
-  
-  .myList.active {
-    display: block;
-  }
