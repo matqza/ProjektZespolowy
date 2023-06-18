@@ -1,7 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
+<?php
+
+
+function AddOrder($specificUser)
+{
+    $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
+
+
+    if(mysqli_connect_errno())
+    {
+        echo "connection failed";
+        exit();
+    }
+    //==============================================================================================================================
+    //przy kończeniu aplikacji dodać usera
+    $wynik = $conn->query("insert into orders values(null, $specificUser);");
+    $conn->close();
+ 
+}
+
+function AddOrderDetails()
+{
+    session_start();
+
+    $pizzaName = $_SESSION['pizzaName'];
+    $pizzaIng = $_SESSION['pizzaIng'];
+    $pizzaCost = $_SESSION['pizzaCost'];
+
+    $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
+    if(mysqli_connect_errno())
+    {
+        echo "connection failed";
+        exit();
+    }
+    $orderIdForThisItems = $conn->query("select max(Id) from orders;");
+    //$wynik = $conn->query("insert into orders values(null, $orderIdForThisItems, $pizzaName, $pizzaIng, $pizzaCost);");
+    $conn->close();
+}
+?>
+    <script type="text/javascript">
+
+        function AddToDatabase()
+        {
+            var x = document.getElementById("Order");
+            <?php AddOrder(1);?>
+            
+            var rowCount = $orderTable.rows.length;
+            for(var i=0;i<rowCount;i++)
+            {
+                sessionStorage.setItem('pizzaName',$x.rows[i].cells[0].innerHTML); 
+                sessionStorage.setItem('pizzaIng',$x.rows[i].cells[1].innerHTML);
+                sessionStorage.setItem('pizzaCost',30);
+                //?php AddOrderDetails();?>
+            }
+        }
 
         function CheckboxChange($checkbox) 
         {
@@ -67,10 +121,10 @@
                     
                    // Console.console.log($setDiv);
                     var x = document.getElementById($setDiv);
-                if(x.style.display=="none")
+                     if(x.style.display=="none")
                     x.style.display="block";
-                else
-                x.style.display="none"
+                     else
+                     x.style.display="none"
 
                  }
 
@@ -95,9 +149,11 @@
                     var newText = document.createTextNode($pizzaID);
                     newCell1.appendChild(newText);
                     newCell1 = newRow.insertCell();
-                    newCell1.innerHTML = bttn.value;
+                    newCell1.innerHTML = bttn.value + " ";
                     newCell1 = newRow.insertCell();
-                    newCell1.innerHTML = "<button>edycja</button>";
+                    var rowsCount=x.rows.length-1;
+
+                    newCell1.innerHTML = '<button id="ed'+rowsCount+'" onclick="EditItem('+rowsCount+')" class="basketButtons">edycja</button>';
                     newCell1 = newRow.insertCell();
                     newCell1.innerHTML = '<button onclick="deleteRow(this)">klik</button>';
 
@@ -131,6 +187,15 @@
                     }
                  }
 
+                 function FixingString($orderTable)
+                 {
+                    var rowCount = $orderTable.rows.length;
+                    for(var i=0;i<rowCount;i++)
+                    {
+                        $orderTable.rows[i].cells[1].innerHTML += " ";
+                    }
+                 }
+
                  //loads data into table after you open this page
                  function LoadSavedData()
                  {
@@ -139,12 +204,12 @@
                    tableid.innerHTML=sentData;
 
 
-                   if(tableid.rows[0].cells.length!=3)
+                   if(tableid.rows[0].cells.length!=4)
                    {
                    AddColumn(1,tableid);
                    AddColumn(2,tableid);
                    }
-
+                   FixingString(tableid);
                     
                     
                  }
@@ -294,6 +359,9 @@
             </div>
             <button  id="addToOrderbuton" onclick="SetAddVisibility('addToOrder')">
                 dodaj do zamówienia
+            </button>
+            <button  id="addToOrderbuton" onclick="AddToDatabase()">
+                zatwierdź
             </button>
         </main>
 
