@@ -95,6 +95,16 @@ thead
     cursor: pointer;
   }
   
-  #clear-cart-btn:hover {
+#clear-cart-btn:hover 
+{
     background-color: #d32f2f;
-  }
+}
+
+#discount-code 
+{
+    display: block;
+    margin: 0 auto; /* Wyśrodkowanie poziome */
+    text-align: center; /* Wyśrodkowanie zawartości w polu */
+    padding: 10px;
+    font-size: 16px;
+}
