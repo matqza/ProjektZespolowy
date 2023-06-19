@@ -4,17 +4,7 @@
 $request_body = file_get_contents('php://input');
 $params = json_decode($request_body, true);
 
-$name = $params['name'];
-$age = $params['age'];
-
-// Wykonanie operacji w oparciu o przekazane parametry
-// ...
-
-// Zwrócenie odpowiedzi z funkcji PHP
-$response = "Witaj, $name! Twój wiek to $age.";
-echo $response;
-/*
-$name = $_POST['query'];
+$query = $params['query'];
 
 $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
 
@@ -25,10 +15,10 @@ $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
                     exit();
                 }
             
-                $wynik = $conn->query("insert into orders values(null, 1)");
+                $wynik = $conn->query($query);
 
 
-$response = "$name";
+$response = "$query";
 echo $response;
-*/
+
 ?>

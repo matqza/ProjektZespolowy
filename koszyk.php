@@ -6,8 +6,8 @@
 
         function sendQueryToDatabase($myQuery) {
         const params = {
-            name: 'John',
-         age: 25
+            query: $myQuery
+       
         };
 
         // Wysyłanie żądania do funkcji PHP
@@ -43,28 +43,13 @@
             var rowCount = x.rows.length;
             for(var i=0;i<rowCount;i++)
             {
-                /*
-               // sessionStorage.setItem('pizzaName',x.rows[i].cells[0].innerHTML); 
-               // sessionStorage.setItem('pizzaIng',x.rows[i].cells[1].innerHTML);
-              //  sessionStorage.setItem('pizzaCost',30);
-                //?php AddOrderDetails();?>
 
-                jQuery.ajax({
-                    type: "POST",
-                    url: 'your_functions_address.php',
-                    dataType: 'json',
-                    data: {functionname: 'add', arguments: [1, 2]},
+                 $pizzaName = '"' + x.rows[i].cells[0].innerHTML + '"';
+                 $pizzaIng = '"' +  x.rows[i].cells[1].innerHTML + '"';
+                 $pizzaCost = 3;
+                
 
-                    success: function (obj, textstatus) {
-                        if( !('error' in obj) ) {
-                            yourVariable = obj.result;
-                        }
-                        else {
-                            console.log(obj.error);
-                        }
-                    }
-                });
-                */
+               sendQueryToDatabase("insert into orderdetails values(null, (select max(Id) from orders),"+ $pizzaName + "," + $pizzaIng + "," + $pizzaCost+")");
             }
             
         }
