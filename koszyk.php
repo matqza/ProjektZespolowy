@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php
+    <script  >
 
 
-function AddOrder($specificUser)
-{
-    $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
+        function sendQueryToDatabase($myQuery) {
+        const params = {
+            name: 'John',
+         age: 25
+        };
+
+        // Wysyłanie żądania do funkcji PHP
+        fetch('loadData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            // Tutaj możesz przetworzyć otrzymane dane z funkcji PHP
+        })
+        .catch(error => {
+            console.error('Błąd podczas wywoływania funkcji PHP:', error);
+        });
+        }
 
 
-    if(mysqli_connect_errno())
-    {
-        echo "connection failed";
-        exit();
-    }
-    //==============================================================================================================================
-    //przy kończeniu aplikacji dodać usera
-    $wynik = $conn->query("insert into orders values(null, $specificUser);");
-    $conn->close();
- 
-}
-
-function AddOrderDetails()
-{
-    session_start();
-
-    $pizzaName = $_SESSION['pizzaName'];
-    $pizzaIng = $_SESSION['pizzaIng'];
-    $pizzaCost = $_SESSION['pizzaCost'];
-
-    $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
-    if(mysqli_connect_errno())
-    {
-        echo "connection failed";
-        exit();
-    }
-    $orderIdForThisItems = $conn->query("select max(Id) from orders;");
-    //$wynik = $conn->query("insert into orders values(null, $orderIdForThisItems, $pizzaName, $pizzaIng, $pizzaCost);");
-    $conn->close();
-}
-?>
-    <script type="text/javascript">
 
         function AddToDatabase()
         {
             var x = document.getElementById("Order");
-            <?php AddOrder(1);?>
+           //console.log('<php AddOrder(1); AddOrderDetails("aa", "bb", 30);?>'); 
+          // console.log('?php AddOrderDetails("aa", "bb", 30);?>');
+
+         
+
+          sendQueryToDatabase("insert into orders values(null, 1)");
             
-            var rowCount = $orderTable.rows.length;
+            var rowCount = x.rows.length;
             for(var i=0;i<rowCount;i++)
             {
-                sessionStorage.setItem('pizzaName',$x.rows[i].cells[0].innerHTML); 
-                sessionStorage.setItem('pizzaIng',$x.rows[i].cells[1].innerHTML);
-                sessionStorage.setItem('pizzaCost',30);
+                /*
+               // sessionStorage.setItem('pizzaName',x.rows[i].cells[0].innerHTML); 
+               // sessionStorage.setItem('pizzaIng',x.rows[i].cells[1].innerHTML);
+              //  sessionStorage.setItem('pizzaCost',30);
                 //?php AddOrderDetails();?>
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: 'your_functions_address.php',
+                    dataType: 'json',
+                    data: {functionname: 'add', arguments: [1, 2]},
+
+                    success: function (obj, textstatus) {
+                        if( !('error' in obj) ) {
+                            yourVariable = obj.result;
+                        }
+                        else {
+                            console.log(obj.error);
+                        }
+                    }
+                });
+                */
             }
+            
         }
 
         function CheckboxChange($checkbox) 
