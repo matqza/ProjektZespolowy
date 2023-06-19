@@ -3,6 +3,11 @@
 <head>
   <title>Strona z panelem admina</title>
   <link rel="stylesheet" type="text/css" href="AdminPanel.css">
+  <style>
+    .selected {
+      background-color: yellow;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -33,7 +38,7 @@
       <button id="addUserButton">Dodaj użytkownika</button><br>
       <button id="selectUserButton">Wybierz użytkownika</button><br>
       <button>Przycisk 2</button><br>
-      <div id="userList"></div>
+      <ul id="userList"></ul>
     </p>
     <p id="item3">Zamówienia</p>
     <p id="item4">Wyloguj się</p>
@@ -81,6 +86,16 @@
     for (var i = 0; i < myArray.length; i++) {
       var listItem = document.createElement('li');
       listItem.textContent = myArray[i].name + ' - ' + myArray[i].value;
+
+      // Dodaj obsługę zaznaczania wierszy
+      listItem.addEventListener('click', function() {
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+        } else {
+          this.classList.add('selected');
+        }
+      });
+
       userList.appendChild(listItem);
     }
   </script>
