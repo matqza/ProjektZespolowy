@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Strona z panelem admina</title>
+  <link rel="stylesheet" type="text/css" href="AdminPanel.css">
+  <style>
+    .selected {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Panel Admina</h1>
+  </header>
+  <nav class="tabs">
+    <ul class="tab-links">
+      <li><a href="#item1">Strona główna</a></li>
+      <li><a href="#item2">Użytkownicy</a></li>
+      <li><a href="#item3">Zamówienia</a></li>
+      <li><a href="#item4">Wyloguj się</a></li>
+      <li><a href="#default">wyczyść</a></li>
+    </ul>
+  </nav>
+  <div class="items">
+    <p id="item1">Strona główna</p>
+    <p id="item2">
+      <input placeholder="ID" type="number"><br>
+      <input placeholder="Imię" type="text"><br>
+      <input placeholder="Nazwisko" type="text"><br>
+      <input placeholder="Numer telefonu" type="number"><br>
+      <input placeholder="Adres zamieszkania" type="text"><br>
+      <input placeholder="Nazwa Użytkownika" type="text"><br>
+      <input placeholder="Email" type="text"><br>
+      <input placeholder="Hasło" type="text"><br>
+      <input placeholder="Typ konta" type="text"><br>
+
+      <button id="addUserButton">Dodaj użytkownika</button><br>
+      <button id="selectUserButton">Wybierz użytkownika</button><br>
+      <button>Przycisk 2</button><br>
+      <ul id="userList"></ul>
+    </p>
+    <p id="item3">Zamówienia</p>
+    <p id="item4">Wyloguj się</p>
+    <p id="default"><!-- domyślnie nie jest wyświetlany żaden tekst --></p>
+  </div>
+  <script>
+    var addUserButton = document.getElementById('addUserButton');
+    var selectUserButton = document.getElementById('selectUserButton');
+    var userList = document.getElementById('userList');
+
+    addUserButton.addEventListener('click', function() {
+      userList.style.display = 'block';
+    });
+
+    selectUserButton.addEventListener('click', function() {
+      userList.style.display = 'block';
+    });
+
+    // Funkcja do ukrywania listy użytkowników
+    function hideUserList() {
+      userList.style.display = 'none';
+    }
+
+    // Początkowo ukryj listę użytkowników
+    hideUserList();
+
+    // Obsługa zmiany zakładki
+    window.addEventListener('hashchange', function() {
+      var currentHash = window.location.hash;
+      if (currentHash !== '#item2') {
+        hideUserList();
+      } else {
+        userList.style.display = 'block';
+      }
+    });
+
+    // Przykładowa tablica obiektów
+    var myArray = [
+      { name: 'Obiekt 1', value: 10 },
+      { name: 'Obiekt 2', value: 20 },
+      { name: 'Obiekt 3', value: 30 }
+    ];
+
+    // Tworzenie elementów listy i dodawanie ich do 'userList'
+    for (var i = 0; i < myArray.length; i++) {
+      var listItem = document.createElement('li');
+      listItem.textContent = myArray[i].name + ' - ' + myArray[i].value;
+
+      // Dodaj obsługę zaznaczania wierszy
+      listItem.addEventListener('click', function() {
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+        } else {
+          this.classList.add('selected');
+        }
+      });
+
+      userList.appendChild(listItem);
+    }
+  </script>
+  <script src="tabs.js"></script>
+</body>
+</html>
