@@ -1,8 +1,9 @@
+/* Style.css */
 .container {
   position: relative;
 }
 
-body {
+.body {
   /*background-color: lightblue;*/
   background-image: url('imagePizzaWeb.jpg');
   background-size: 100%;
@@ -83,4 +84,9 @@ body {
   color: rgba(245, 192, 192, 0.492);
   text-align: center;
   margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
 }

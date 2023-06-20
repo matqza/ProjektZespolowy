@@ -15,11 +15,15 @@ if (empty($firstName) || empty($surname) || empty($phoneNumber) || empty($addres
     exit();
 }
 
+
+
+
 // Sprawdzenie czy hasła są takie same
 if ($password !== $password2) {
     echo "Podane hasła nie są identyczne.";
     exit();
 }
+
 
 // Haszowanie hasła
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);

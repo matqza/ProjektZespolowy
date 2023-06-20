@@ -10,8 +10,7 @@
 <body>
 <main>
 
-
-    <form class="container" action="script.php" method="POST">
+    <form class="container" action="script.php" method="POST" onsubmit="return validateForm()">
 
         <div class="icon-container">
             <h1 class="main-label">Zarejestruj się</h1>
@@ -82,9 +81,9 @@
                 </div>
                 <div>
                     <center>
-                        <button type="submit" class="button-register" name="button-register">Zarejestruj
+                        <button type="submit" class="button-register" name="button-register">Zarejestruj</button>
+                        <p id="error-message" style="color: red;"></p>
                     </center>
-                    </button>
                 </div>
                 <div>
                     <center>
@@ -104,5 +103,17 @@
         </div>
     </form>
 </main>
+
+<script>
+    function validateForm() {
+        const agreeCheckbox = document.getElementById('agree');
+        if (!agreeCheckbox.checked) {
+            document.getElementById('error-message').textContent = 'Musisz zaakceptować politykę prywatności.';
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>
+
 </body>
 </html>
