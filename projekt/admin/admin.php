@@ -57,38 +57,49 @@
         exit();
     }
 
-    // Obsługa aktualizacji danych użytkownika
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["updateUser"])) {
-        // Pobierz dane z formularza
-        $id = $_POST["id"];
-        $imie = $_POST["imie"];
-        $nazwisko = $_POST["nazwisko"];
-        $numer_telefonu = $_POST["numer_telefonu"];
-        $adres_zamieszkania = $_POST["adres_zamieszkania"];
-        $nazwa_uzytkownika = $_POST["nazwa_uzytkownika"];
-        $email = $_POST["email"];
-        if (!empty($_POST["haslo"])) {
-            // Jeśli hasło zostało zmienione, zaktualizuj je w bazie danych
-            $haslo = password_hash($_POST["haslo"], PASSWORD_DEFAULT);
-            // Zaktualizuj dane użytkownika w bazie danych (z hasłem)
-            $query = "UPDATE uzytkownicy SET imie = ?, nazwisko = ?, numer_telefonu = ?, adres_zamieszkania = ?, nazwa_uzytkownika = ?, email = ?, haslo = ?, typ_konta = ? WHERE id = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("ssssssssi", $imie, $nazwisko, $numer_telefonu, $adres_zamieszkania, $nazwa_uzytkownika, $email, $haslo, $typ_konta, $id);
-            $stmt->execute();
-        } else {
-            // Zaktualizuj dane użytkownika w bazie danych (bez hasła)
-            $query = "UPDATE uzytkownicy SET imie = ?, nazwisko = ?, numer_telefonu = ?, adres_zamieszkania = ?, nazwa_uzytkownika = ?, email = ?, typ_konta = ? WHERE id = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("sssssssi", $imie, $nazwisko, $numer_telefonu, $adres_zamieszkania, $nazwa_uzytkownika, $email, $typ_konta, $id);
-            $stmt->execute();
-        }
+// Obsługa aktualizacji danych użytkownika
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["updateUser"])) {
+    // Pobierz dane z formularza
+    $id = $_POST["id"];
+    $imie = $_POST["imie"];
+    $nazwisko = $_POST["nazwisko"];
+    $numer_telefonu = $_POST["numer_telefonu"];
+    $adres_zamieszkania = $_POST["adres_zamieszkania"];
+    $nazwa_uzytkownika = $_POST["nazwa_uzytkownika"];
+    $email = $_POST["email"];
+    $typ_konta = $_POST["typ_konta"];
 
-        // Przekieruj na tę samą stronę, aby odświeżyć listę użytkowników
-        header("Location: " . $_SERVER['REQUEST_URI']);
-        exit();
+    if (!empty($_POST["haslo"])) {
+        // Jeśli hasło zostało zmienione, zaktualizuj je w bazie danych
+        $haslo = password_hash($_POST["haslo"], PASSWORD_DEFAULT);
+        // Zaktualizuj dane użytkownika w bazie danych (z hasłem)
+        $query = "UPDATE uzytkownicy SET imie = ?, nazwisko = ?, numer_telefonu = ?, adres_zamieszkania = ?, nazwa_uzytkownika = ?, email = ?, haslo = ?, typ_konta = ? WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ssssssssi", $imie, $nazwisko, $numer_telefonu, $adres_zamieszkania, $nazwa_uzytkownika, $email, $haslo, $typ_konta, $id);
+        if ($stmt->execute()) {
+            echo "<script>alert('Dane użytkownika zostały zaktualizowane pomyślnie');</script>";
+        } else {
+            echo "<script>alert('Wystąpił błąd podczas aktualizacji danych użytkownika');</script>";
+        }
+    } else {
+        // Zaktualizuj dane użytkownika w bazie danych (bez hasła)
+        $query = "UPDATE uzytkownicy SET imie = ?, nazwisko = ?, numer_telefonu = ?, adres_zamieszkania = ?, nazwa_uzytkownika = ?, email = ?, typ_konta = ? WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("sssssssi", $imie, $nazwisko, $numer_telefonu, $adres_zamieszkania, $nazwa_uzytkownika, $email, $typ_konta, $id);
+        if ($stmt->execute()) {
+            echo "<script>alert('Dane użytkownika zostały zaktualizowane pomyślnie');</script>";
+        } else {
+            echo "<script>alert('Wystąpił błąd podczas aktualizacji danych użytkownika');</script>";
+        }
     }
 
-    $conn->close();
+    // Przekieruj na tę samą stronę, aby odświeżyć listę użytkowników
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
+}
+
+$conn->close();
+
   ?>
   <header>
     <h1>Panel Admina</h1>
