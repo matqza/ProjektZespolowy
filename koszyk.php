@@ -1,230 +1,229 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script  >
+
+<script>
+
+    //funkcja do wysyłania zapytać do pliku loadData.php
+    function sendQueryToDatabase($myQuery) {
+    const params = {
+        query: $myQuery
+
+    };
+
+    // Wysyłanie żądania do funkcji PHP
+    fetch('loadData.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        // Tutaj możesz przetworzyć otrzymane dane z funkcji PHP
+    })
+    .catch(error => {
+        console.error('Błąd podczas wywoływania funkcji PHP:', error);
+    });
+    }
 
 
-        function sendQueryToDatabase($myQuery) {
-        const params = {
-            query: $myQuery
-       
-        };
 
-        // Wysyłanie żądania do funkcji PHP
-        fetch('loadData.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(params)
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            // Tutaj możesz przetworzyć otrzymane dane z funkcji PHP
-        })
-        .catch(error => {
-            console.error('Błąd podczas wywoływania funkcji PHP:', error);
-        });
-        }
+    function AddToDatabase()
+    {
+        var x = document.getElementById("Order");
 
+    
 
-
-        function AddToDatabase()
+    sendQueryToDatabase("insert into orders values(null, 1)");
+        
+        var rowCount = x.rows.length;
+        for(var i=0;i<rowCount;i++)
         {
-            var x = document.getElementById("Order");
-           //console.log('<php AddOrder(1); AddOrderDetails("aa", "bb", 30);?>'); 
-          // console.log('?php AddOrderDetails("aa", "bb", 30);?>');
 
-         
-
-          sendQueryToDatabase("insert into orders values(null, 1)");
+            $pizzaName = '"' + x.rows[i].cells[0].innerHTML + '"';
+            $pizzaIng = '"' +  x.rows[i].cells[1].innerHTML + '"';
+            $pizzaCost = 3;
             
-            var rowCount = x.rows.length;
-            for(var i=0;i<rowCount;i++)
-            {
 
-                 $pizzaName = '"' + x.rows[i].cells[0].innerHTML + '"';
-                 $pizzaIng = '"' +  x.rows[i].cells[1].innerHTML + '"';
-                 $pizzaCost = 3;
-                
-
-               sendQueryToDatabase("insert into orderdetails values(null, (select max(Id) from orders),"+ $pizzaName + "," + $pizzaIng + "," + $pizzaCost+")");
-            }
-            
+        sendQueryToDatabase("insert into orderdetails values(null, (select max(Id) from orders),"+ $pizzaName + "," + $pizzaIng + "," + $pizzaCost+")");
         }
+        
+    }
 
-        function CheckboxChange($checkbox) 
+    function CheckboxChange($checkbox) 
+    {
+        var orderTable = document.getElementById("Order");
+        var x = document.getElementById("leftPanel");
+        var newtext = orderTable.rows[x.value].cells[1].innerHTML;
+        if($checkbox.checked)
         {
-            var orderTable = document.getElementById("Order");
-            var x = document.getElementById("leftPanel");
-            var newtext = orderTable.rows[x.value].cells[1].innerHTML;
-            if($checkbox.checked)
-            {
-              
-                newtext=newtext+$checkbox.value;   
-                console.log("on");
-                console.log(newtext);
-                orderTable.rows[x.value].cells[1].innerHTML = newtext;
-                return 0;
-            }
-                newtext =newtext.replace($checkbox.value, "");
-                orderTable.rows[x.value].cells[1].innerHTML = newtext;
-                console.log("off");
-                console.log(newtext);
-            
-            
-            
-        }
-
-        function MarkCheckboxes($ingredientText)
-        {
-            var table = document.getElementById("Order");
-            var newtext = table.rows[$ingredientText].cells[1].innerHTML;
+        
+            newtext=newtext+$checkbox.value;   
+            console.log("on");
             console.log(newtext);
-            console.log($ingredientText);
-           
-            var checkboxes = document.getElementsByClassName("leftPanelEditCheckbox");
-            for (var i = 0; i < checkboxes.length; i++) 
-            {
-                if(newtext.includes(checkboxes.item(i).value))
-                {
-                    checkboxes.item(i).checked=true;
-                }
-                else
-                {
-                    checkboxes.item(i).checked=false;
-                }
-            }
+            orderTable.rows[x.value].cells[1].innerHTML = newtext;
+            return 0;
+        }
+            newtext =newtext.replace($checkbox.value, "");
+            orderTable.rows[x.value].cells[1].innerHTML = newtext;
+            console.log("off");
+            console.log(newtext);
+        
+        
+        
+    }
 
+
+    //zaznacza checkboxy (jeśli checkox ma jeden ze składników to zostaje zaznaczony)
+    function MarkCheckboxes($ingredientText)
+    {
+        var table = document.getElementById("Order");
+        var newtext = table.rows[$ingredientText].cells[1].innerHTML;
+        console.log(newtext);
+        console.log($ingredientText);
+    
+        var checkboxes = document.getElementsByClassName("leftPanelEditCheckbox");
+        for (var i = 0; i < checkboxes.length; i++) 
+        {
+            if(newtext.includes(checkboxes.item(i).value))
+            {
+                checkboxes.item(i).checked=true;
+            }
+            else
+            {
+                checkboxes.item(i).checked=false;
+            }
         }
 
-          function EditItem($button)
-          {
-            var x = document.getElementById("leftPanel");
-            x.value=$button;
+    }
+        //funkcja wywoływana przez naciśnięcie huzika edit
+    function EditItem($button)
+    {
+        var x = document.getElementById("leftPanel");
+        x.value=$button;
+            if(x.style.display=="none")
+            {
+                x.style.display="block";
+                MarkCheckboxes($button);
+            }
+            else
+            x.style.display="none"
+    }
+
+        //pokazuje lub ukrywa diva
+    function SetAddVisibility($setDiv)
+            {
+                
+            // Console.console.log($setDiv);
+                var x = document.getElementById($setDiv);
                 if(x.style.display=="none")
-                {
-                    x.style.display="block";
-                    MarkCheckboxes($button);
-                }
+                x.style.display="block";
                 else
                 x.style.display="none"
-          }
-    
-            
-          function SetAddVisibility($setDiv)
-                 {
-                    
-                   // Console.console.log($setDiv);
-                    var x = document.getElementById($setDiv);
-                     if(x.style.display=="none")
-                    x.style.display="block";
-                     else
-                     x.style.display="none"
 
-                 }
+            }
 
-                 //deletes a row in table "Order"
-                 function deleteRow( $ill)
-                 {
-                    var x = document.getElementById("Order");
-                    $ill.closest('tr').remove();
+            //deletes a row in table "Order"
+            function deleteRow( $ill)
+            {
+                var x = document.getElementById("Order");
+                $ill.closest('tr').remove();
 
-                    //updates the value in session
-                        sessionStorage.setItem('basketresult',x.innerHTML);
-                 }
+                //updates the value in session
+                    sessionStorage.setItem('basketresult',x.innerHTML);
+            }
 
-                 //adds an item into "Order" table
-                 function AddToOrder($pizzaID)
-                 {
+            //adds an item into "Order" table
+            function AddToOrder($pizzaID)
+            {
 
-                    var bttn = document.getElementById($pizzaID);
-                    var x = document.getElementById("Order");
-                    var newRow = x.insertRow();
-                    var newCell1 = newRow.insertCell();
-                    var newText = document.createTextNode($pizzaID);
-                    newCell1.appendChild(newText);
-                    newCell1 = newRow.insertCell();
-                    newCell1.innerHTML = bttn.value + " ";
-                    newCell1 = newRow.insertCell();
-                    var rowsCount=x.rows.length-1;
+                var bttn = document.getElementById($pizzaID);
+                var x = document.getElementById("Order");
+                var newRow = x.insertRow();
+                var newCell1 = newRow.insertCell();
+                var newText = document.createTextNode($pizzaID);
+                newCell1.appendChild(newText);
+                newCell1 = newRow.insertCell();
+                newCell1.innerHTML = bttn.value + " ";
+                newCell1 = newRow.insertCell();
+                var rowsCount=x.rows.length-1;
 
-                    newCell1.innerHTML = '<button id="ed'+rowsCount+'" onclick="EditItem('+rowsCount+')" class="basketButtons">edycja</button>';
-                    newCell1 = newRow.insertCell();
-                    newCell1.innerHTML = '<button onclick="deleteRow(this)">klik</button>';
+                newCell1.innerHTML = '<button id="ed'+rowsCount+'" onclick="EditItem('+rowsCount+')" class="basketButtons">edycja</button>';
+                newCell1 = newRow.insertCell();
+                newCell1.innerHTML = '<button onclick="deleteRow(this)">usuń</button>';
 
-                    //updates the value in session
-                        sessionStorage.setItem('basketresult',x.innerHTML);
-                 }
+                //updates the value in session
+                    sessionStorage.setItem('basketresult',x.innerHTML);
+            }
 
-                 //adds a column into table with 2 types of buttons
-                 function AddColumn( $buttonType,  $table)
-                 {
-                   // var table = document.getElementById("tableTest");
-                    var rows = $table.rows;
-                    //console.log("rows", rows);
+            //adds a column into table with 2 types of buttons
+            function AddColumn( $buttonType,  $table)
+            {
+            // var table = document.getElementById("tableTest");
+                var rows = $table.rows;
+                //console.log("rows", rows);
 
-                    for (var i = 0; i < rows.length; ++i) {                
-                        var td = document.createElement("td");
-                       // td.innerText = $buttonType;
-                       if($buttonType==1)
-                       {
-                        var hh="leftPanel";
-                         var a = '<button id="ed'+i+'" onclick="EditItem('+i+')" class="basketButtons">edycja</button>';
-                        td.innerHTML = a;
-                      //  var str= ' echo <<< HTML <button id="e".i onclick="SetAddVisibility("leftPanel")"> <p>edycja</p> </button> </div> HTML ';
-                        //td.innerHTML = str;
-                       }
-                       else
-                       {
-                        td.innerHTML = '<button onclick="deleteRow(this)" class="basketButtons">klik</button>';
-                       }
-                        rows[i].appendChild(td);    
-                    }
-                 }
+                for (var i = 0; i < rows.length; ++i) {                
+                    var td = document.createElement("td");
+                // td.innerText = $buttonType;
+                if($buttonType==1)
+                {
+                    var hh="leftPanel";
+                    var a = '<button id="ed'+i+'" onclick="EditItem('+i+')" class="basketButtons">edycja</button>';
+                    td.innerHTML = a;
+                //  var str= ' echo <<< HTML <button id="e".i onclick="SetAddVisibility("leftPanel")"> <p>edycja</p> </button> </div> HTML ';
+                    //td.innerHTML = str;
+                }
+                else
+                {
+                    td.innerHTML = '<button onclick="deleteRow(this)" class="basketButtons">usuń</button>';
+                }
+                    rows[i].appendChild(td);    
+                }
+            }
 
-                 function FixingString($orderTable)
-                 {
-                    var rowCount = $orderTable.rows.length;
-                    for(var i=0;i<rowCount;i++)
-                    {
-                        $orderTable.rows[i].cells[1].innerHTML += " ";
-                    }
-                 }
+            function FixingString($orderTable)
+            {
+                var rowCount = $orderTable.rows.length;
+                for(var i=0;i<rowCount;i++)
+                {
+                    $orderTable.rows[i].cells[1].innerHTML += " ";
+                }
+            }
 
-                 //loads data into table after you open this page
-                 function LoadSavedData()
-                 {
-                   var sentData=sessionStorage.getItem('basketresult');
-                   var tableid = document.getElementById("Order");
-                   tableid.innerHTML=sentData;
+            //loads data into table after you open this page
+            function LoadSavedData()
+            {
+            var sentData=sessionStorage.getItem('basketresult');
+            var tableid = document.getElementById("Order");
+            tableid.innerHTML=sentData;
 
 
-                   if(tableid.rows[0].cells.length!=4)
-                   {
-                   AddColumn(1,tableid);
-                   AddColumn(2,tableid);
-                   }
-                   FixingString(tableid);
-                    
-                    
-                 }
+            if(tableid.rows[0].cells.length!=4)
+            {
+            AddColumn(1,tableid);
+            AddColumn(2,tableid);
+            }
+            FixingString(tableid);
+                
+                
+            }
 
-    </script>
-
-
+</script>
 
 
-
-
-    <title>Nazwa strony</title>
-    <link href="koszyk.css" rel="stylesheet" type="text/css">
+  <title>Koszyk zamówień</title>
+  <link rel="stylesheet" type="text/css" href="koszyk.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body onload="LoadSavedData();">
-    <div id="container">
-        <div id="leftPanel">
+
+<div id="leftPanel">
             <?php
+            //towrzy checkboxy w panelu edycji
                 $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
 
 
@@ -251,27 +250,20 @@
                         HTML;
                 }
             ?>
-        </div>
-
-        <header >
-    
-        </header>
-
-        <nav>
-            <!-- zawartość menu nawigacyjnego strony -->
-        </nav>
-
-        <main>
-
-            <table id="Order">
-            </table>
-                    
-                        
-                    
+</div>
 
 
-            <div id="addToOrder">
+  <h1>Koszyk zamówień</h1>
+  <div id="cart">
+    <table id="Order">
+        </table>
+    <h3 id="total-price">Łączna cena: 0 zł</h3>
+    <input type="text" id="discount-code" placeholder="Wprowadź kod rabatowy">
+  </div>
+
+  <div id="addToOrder">
         <?php
+        //dynamiczne towrzenie guzików 
              $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
 
 
@@ -317,7 +309,7 @@
                                             $fullIngredients .=$mytemprow[1];
                                             break;
                                         }
-                                        $fullIngredients .=$mytemprow[1] . ", ";
+                                        $fullIngredients .=$mytemprow[1] . " ";
                                     $tempHelp="";
                                 }
                                 else
@@ -352,24 +344,14 @@
             <button  id="addToOrderCancel" onclick="SetAddVisibility('addToOrder')">
                 anuluj
             </button>
-            
-            </div>
-            <button  id="addToOrderbuton" onclick="SetAddVisibility('addToOrder')">
-                dodaj do zamówienia
-            </button>
-            <button  id="addToOrderbuton" onclick="AddToDatabase()">
-                zatwierdź
-            </button>
-        </main>
-
-            
-
-
-        <footer>
-            <!-- zawartość stopki strony -->
-        </footer>
-
         </div>
-    <div>
+  <!-- Przycisk do złożenia zamówienia -->
+  <button  id="addToOrderbuton" onclick="SetAddVisibility('addToOrder')">
+                dodaj do zamówienia
+    </button>
+  <button id="checkout-btn" onclick="AddToDatabase()>Złóż zamówienie</button>
+  <button id="clear-cart-btn">Wyczyść koszyk</button>
+
+  <script src="script.js"></script>
 </body>
 </html>

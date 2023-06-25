@@ -32,3 +32,113 @@
 }
 
 
+body 
+{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-image: url("R.jpg");
+}
+  
+h1 
+{
+    text-align: center;
+    font-family: "Pacifico", cursive;
+}
+  
+#cart 
+{
+    margin-top: 20px;
+}
+  
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+th, td 
+{
+    border: 1px solid rgba(248, 248, 248, 0.8);
+    padding: 8px;
+    text-align: left;
+    font-size: 18px;
+    font-family: "Pacifico", cursive;
+    position: relative; /* Dodajemy pozycję względem rodzica */
+    animation: slide 2s infinite; /* Dodajemy animację */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0); /* Przesunięcie początkowe */
+    }
+    50% {
+        transform: translateX(10px); /* Przesunięcie w prawo */
+    }
+    100% {
+        transform: translateX(0); /* Powrót do początkowej pozycji */
+    }
+}
+  
+thead
+{
+    background-color: rgba(248, 248, 248, 0.8);
+}
+  
+#total-price 
+{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 28px; 
+    font-family: "Arial Black", sans-serif; /* Przykładowa fajna czcionka */
+    animation: pulsate 2s infinite; /* Dodajemy animację */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Dodajemy cień tekstowy */
+}
+
+@keyframes pulsate {
+    0% { font-size: 24px; }
+    50% { font-size: 28px; }
+    100% { font-size: 24px; }
+}
+  
+#checkout-btn 
+{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: rgba(248, 248, 248, 0.8);
+    border: none;
+    cursor: pointer;
+}
+  
+#checkout-btn:hover 
+{
+    background-color: #45a049;
+}
+
+#clear-cart-btn {
+    display: block;
+    margin: 10px auto; /* Wyśrodkowanie w pionie i poziomie */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336;
+    color: rgba(248, 248, 248, 0.8);
+    border: none;
+    cursor: pointer;
+  }
+  
+#clear-cart-btn:hover 
+{
+    background-color: #d32f2f;
+}
+
+#discount-code 
+{
+    display: block;
+    margin: 0 auto; /* Wyśrodkowanie poziome */
+    text-align: center; /* Wyśrodkowanie zawartości w polu */
+    padding: 10px;
+    font-size: 16px;
+}

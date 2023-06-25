@@ -1,4 +1,4 @@
-header{
+/*header{
 width: 100%;
 margin: 0px,0px,0px,0px;
 padding: 0px,0px,0px,0px;
@@ -81,3 +81,412 @@ left:10%;
     height: 50px;
     width: 50px;
 }
+*/
+/*jacek*/
+header {
+	position: sticky;
+	top: 0;
+	width: 70%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 40px 15%;
+	background-color: rgba(255, 255, 255, 0.9); /* Dodatkowe tło dla lepszej widoczności */
+	z-index: 100; /* Ustalamy z-index, aby header wyświetlał się na wierzchu */
+}
+
+/*ok*/
+.logo-container 
+{
+	display: flex;
+	align-items: center;
+}
+  
+/*ok*/
+.logo-text {
+	font-family: "Font Awesome 5 Free", sans-serif; 
+	font-size: 24px;
+	margin-left: 10px;
+	color: #FF8C00;
+	animation-name: bounceShine;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+  }
+  
+
+
+  /*ok*/
+@keyframes bounceShine /* animacja obok logo napisu pizzero */
+{
+	0% {
+	  color: #FF8C00;
+	  text-shadow: none;
+	  transform: translateY(0);
+	}
+	25% {
+	  color: #FFD700;
+	  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+	  transform: translateY(-5px);
+	}
+	50% {
+	  color: #FF8C00;
+	  text-shadow: none;
+	  transform: translateY(0);
+	}
+	75% {
+	  color: #FFD700;
+	  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+	  transform: translateY(-2px);
+	}
+	100% {
+	  color: #FF8C00;
+	  text-shadow: none;
+	  transform: translateY(0);
+	}
+}
+
+/*ok*/
+body 
+{
+	background-image: url('imagePizzaWeb.jpg');
+	background-size: cover;
+	min-height: 100%; /* Dodane */
+}
+
+/*ok*/
+.options
+{
+	display: flex;
+}
+
+/*ok*/
+.options a
+{
+	color: var(--text-color);
+	font-size: var(--p-font);
+	font-weight: 600;
+	padding: 10px 10px;
+	margin: 2px 20px;
+	border-bottom: 2px solid transparent;
+	transition: all .38s ease;
+}
+
+/*ok*/
+.options a:hover
+{
+	border-bottom: 2px solid var(--main-color);
+	color: var(--main-color);
+}
+
+
+/* section logo */
+/*ok*/
+.icons
+{
+	display: flex;
+	align-items: center;
+	padding: 10px 22px;
+	background: var(--main-color);
+	border-radius: 5rem;
+}
+/*ok*/
+.icons i
+{
+	font-size: 28 px;
+	color: black;
+	margin-right: 21px;
+	margin-left:9px;
+}
+/*ok*/
+.logo
+{
+	font-size:20px;
+}
+/* end section logo */
+
+/*ok*/
+section
+{
+	padding: 90px 20% 80px;
+}
+
+/* section o nas */
+/*ok===========================================================================================================================================================*/
+.about-text 
+{
+	text-align: center;
+	padding: 40px;
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+	font-family: "Arial", sans-serif;
+}
+  
+.about-text p 
+{
+	font-size: 18px;
+	line-height: 1.5;
+	color: #333;
+	margin: 10px 0;
+}
+  
+.about-text p:first-child 
+{
+	margin-top: 0;
+}
+  
+.about-text p:last-child 
+{
+	margin-bottom: 0;
+}
+  
+/* Ikony z biblioteki Font Awesome */
+.about-text span::before 
+{
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	margin-right: 5px;
+}
+  
+#orderCount::before 
+{
+	content: "\f0d1";
+}
+  
+#customerCount::before 
+{
+	content: "\f007";
+}
+  
+#averageWaitTime::before 
+{
+	content: "\f253";
+}
+
+.animated 
+{
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite; /* Animacja będzie działać w pętli */
+}
+  
+.fadeIn 
+{
+	animation-name: bounceIn;
+}
+  
+@keyframes bounceIn 
+{
+	0% {
+	  opacity: 0;
+	  transform: scale(0.3);
+	}
+	70% {
+	  transform: scale(1.1);
+	}
+	100% {
+	  opacity: 1;
+	  transform: scale(1);
+	}
+}
+ /* end section o nas */
+
+
+ /* section menu */
+.menu-text {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 40px;
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+}
+
+.menu-text img 
+{
+	width: 50px;
+	height: auto;
+}
+  
+.menu-text h2 
+{
+	text-align: center;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+  
+.menu-text ul /* siatka */
+{
+	list-style-type: none;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
+}
+
+.menu-text li 
+{
+	border: 2px solid #000;
+	padding: 20px;
+	text-align: center;
+}
+  
+.menu-text li:hover 
+{
+	border-color: var(--main-color);
+}
+  
+.menu-text h3 
+{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+  
+.menu-text p 
+{
+	margin: 0;
+}
+/* section menu */
+
+
+ /* section profile */
+ .profile 
+ {
+	padding: 20px;
+	background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.profile-text 
+{
+	text-align: center;
+}
+
+.profile-text h2 
+{
+	font-size: 28px;
+	margin-bottom: 20px;
+}
+
+.profile-info 
+{
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+	justify-content: center;
+}
+
+.profile-info p 
+{
+	font-size: 16px;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.profile-info strong 
+{
+	font-weight: bold;
+}
+
+.profile-section {
+	display: flex;
+	align-items: center;
+  }
+
+.profile-icon 
+{
+	font-size: 24px;
+	margin-right: 10px;
+}
+
+.profile-name 
+{
+	font-size: 20px;
+	margin-right: 10px;
+}
+  
+.info-icon 
+{
+	font-size: 16px;
+	margin-right: 5px;
+}
+  
+.info-label 
+{
+	font-size: 20px;
+}
+/* end section profile */
+
+
+ /* section promo */
+ .promo 
+ {
+	 background-color: rgba(248, 248, 248, 0.8); /* Przezroczyste tło */
+	 padding: 20px;
+	 max-width: 800px;
+	 margin: 0 auto;
+ }
+ 
+ .promo-text 
+ {
+	 font-size: 40px;
+	 text-align: center;
+	 animation: pulsate 2s ease-in-out infinite;
+ }
+ 
+ .promo-info 
+ {
+	 margin-top: 40px;
+ }
+
+ @keyframes pulsate 
+ {
+	0% {
+	  transform: scale(1);
+	}
+	50% {
+	  transform: scale(1.1);
+	}
+	100% {
+	  transform: scale(1);
+	}
+}
+/* end section promo */
+
+
+
+.cart-text { /* koszyk */
+	font-size: 19px;
+	font-weight: bold;
+	color: black;
+}
+
+.cart-icon { /* koszyk */
+	font-size: 32px; 
+}
+
+/* stopka */
+footer {
+	padding: 20px;
+	background-color: rgba(248, 248, 248, 0.8);
+	text-align: center;
+}
+
+.social-media {
+	margin-bottom: 10px;
+}
+
+.social-media a {
+	margin: 0 5px;
+	font-size: 24px;
+	color: var(--main-color);
+}
+
+p {
+	font-size: 14px;
+	margin: 0;
+}
+/* end stopka */
+
+
+
+
+
