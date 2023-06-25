@@ -6,28 +6,57 @@
 
     //funkcja do wysyłania zapytać do pliku loadData.php
     function sendQueryToDatabase($myQuery) {
-    const params = {
-        query: $myQuery
+        const params = {
+            query: "select Cost_S from pizza where Name=\"Marinara\"; "
 
-    };
+        };
 
-    // Wysyłanie żądania do funkcji PHP
-    fetch('loadData.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(params)
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        // Tutaj możesz przetworzyć otrzymane dane z funkcji PHP
-    })
-    .catch(error => {
-        console.error('Błąd podczas wywoływania funkcji PHP:', error);
-    });
+        // Wysyłanie żądania do funkcji PHP
+        fetch('loadData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            // Tutaj możesz przetworzyć otrzymane dane z funkcji PHP
+        })
+        .catch(error => {
+            console.error('Błąd podczas wywoływania funkcji PHP:', error);
+        });
     }
+
+    function sendQueryToGetValue($myQuery, $row, $table) 
+    {
+                const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+            const response = xhr.responseText;
+            const parsedResponse = JSON.parse(response);
+            const costValue = parsedResponse[0].Cost_S;
+
+  
+
+
+
+            $table.rows[$row].cells[2].innerHTML = costValue;
+            console.log(costValue);
+            } else {
+            console.error('Błąd podczas wywoływania funkcji PHP:', xhr.status);
+            }
+        }
+        };
+
+        xhr.open('POST', 'getValue.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(`query=${encodeURIComponent($myQuery)}`);
+    }
+
 
 
 
@@ -37,7 +66,7 @@
 
     
 
-    sendQueryToDatabase("insert into orders values(null, 1)");
+         sendQueryToDatabase("insert into orders values(null, 1)");
         
         var rowCount = x.rows.length;
         for(var i=0;i<rowCount;i++)
@@ -99,7 +128,14 @@
         }
 
     }
-        //funkcja wywoływana przez naciśnięcie huzika edit
+    
+    function GetWords($ingString) {
+    var words = $ingString.split(" ");
+    console.log(words);
+    return words;
+    }
+
+    //funkcja wywoływana przez naciśnięcie huzika edit
     function EditItem($button)
     {
         var x = document.getElementById("leftPanel");
@@ -150,6 +186,9 @@
                 newCell1.innerHTML = bttn.value + " ";
                 newCell1 = newRow.insertCell();
                 var rowsCount=x.rows.length-1;
+                var queryToSend = "select Cost_S from pizza where Name like \"" + $pizzaID + "%\";";
+                    sendQueryToGetValue(queryToSend, rowsCount, x);
+
 
                 newCell1.innerHTML = '<button id="ed'+rowsCount+'" onclick="EditItem('+rowsCount+')" class="basketButtons">edycja</button>';
                 newCell1 = newRow.insertCell();
@@ -194,6 +233,22 @@
                 }
             }
 
+      
+
+            function AddValueColumn($table)
+            {
+                var rows = $table.rows;
+                //console.log("rows", rows);
+
+                for (var i = 0; i < rows.length; ++i) 
+                {                
+                    var td = document.createElement("td");
+                    rows[i].appendChild(td); 
+                    var queryToSend = "select Cost_S from pizza where Name like \"" + $table.rows[i].cells[0].innerHTML + "%\";";
+                    sendQueryToGetValue(queryToSend, i, $table);
+                }
+            }
+
             //loads data into table after you open this page
             function LoadSavedData()
             {
@@ -204,6 +259,7 @@
 
             if(tableid.rows[0].cells.length!=4)
             {
+                AddValueColumn(tableid);
             AddColumn(1,tableid);
             AddColumn(2,tableid);
             }
