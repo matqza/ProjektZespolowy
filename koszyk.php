@@ -29,7 +29,7 @@
         });
     }
 
-    function sendQueryToGetValue($myQuery, $row, $table) 
+    function sendQueryToGetValue($myQuery, $row, $table, $action) 
     {
                 const xhr = new XMLHttpRequest();
 
@@ -38,16 +38,34 @@
             if (xhr.status === 200) {
             const response = xhr.responseText;
             const parsedResponse = JSON.parse(response);
-            const costValue = parsedResponse[0].Cost_S;
+            console.log(response);
+            console.log(parsedResponse);
+                if($action==1)
+                {
+                    const costValue = parsedResponse[0].Cost_S;
+                    var totalcost = document.getElementById("total-price");
+                    let toint =totalcost.innerHTML;
+                    totalcost.innerHTML = Number(toint)+Number(costValue);
+                    $table.rows[$row].cells[2].innerHTML = costValue;
+                }
+                else
+                {
+                     costValue = parsedResponse[0].Cost;
+                    var totalcost = document.getElementById("total-price");
+                    let toint =totalcost.innerHTML;
+                    if($action == 3)
+                    {
+                        totalcost.innerHTML = Number(toint)-Number(costValue);
+                    $table.rows[$row].cells[2].innerHTML =   Number($table.rows[$row].cells[2].innerHTML) - Number(costValue);
+                    }
+                    else
+                    {
+                    totalcost.innerHTML = Number(toint)+Number(costValue);
+                    $table.rows[$row].cells[2].innerHTML = Number(costValue) + Number($table.rows[$row].cells[2].innerHTML) ;
+                    }
+                }
 
-            var totalcost = document.getElementById("total-price");
-            let toint =totalcost.innerHTML;
-                totalcost.innerHTML = Number(toint)+Number(costValue);
-
-
-
-            $table.rows[$row].cells[2].innerHTML = costValue;
-            console.log(costValue);
+            //console.log(costValue);
             } else {
             console.error('Błąd podczas wywoływania funkcji PHP:', xhr.status);
             }
@@ -96,13 +114,14 @@
             console.log("on");
             console.log(newtext);
             orderTable.rows[x.value].cells[1].innerHTML = newtext;
+            sendQueryToGetValue("select Cost from ingredients where Ingredient like \""+ $checkbox.value.slice(0,-1) +"\"", x.value, orderTable, 2);
             return 0;
         }
             newtext =newtext.replace($checkbox.value, "");
             orderTable.rows[x.value].cells[1].innerHTML = newtext;
             console.log("off");
             console.log(newtext);
-        
+            sendQueryToGetValue("select Cost from ingredients where Ingredient like \""+ $checkbox.value.slice(0,-1) +"\"", x.value, orderTable, 3);
         
         
     }
@@ -207,9 +226,9 @@
                 newCell1 = newRow.insertCell();
                 var rowsCount=x.rows.length-1;
                 var queryToSend = "select Cost_S from pizza where Name like \"" + $pizzaID + "%\";";
-                    sendQueryToGetValue(queryToSend, rowsCount, x);
+                    sendQueryToGetValue(queryToSend, rowsCount, x, 1);
 
-
+                    newCell1 = newRow.insertCell();
                 newCell1.innerHTML = '<button id="ed'+rowsCount+'" onclick="EditItem('+rowsCount+')" class="basketButtons">edycja</button>';
                 newCell1 = newRow.insertCell();
                 newCell1.innerHTML = '<button onclick="deleteRow(this)">usuń</button>';
@@ -270,7 +289,7 @@
                     var td = document.createElement("td");
                     rows[i].appendChild(td); 
                     var queryToSend = "select Cost_S from pizza where Name like \"" + $table.rows[i].cells[0].innerHTML + "%\";";
-                    sendQueryToGetValue(queryToSend, i, $table);
+                    sendQueryToGetValue(queryToSend, i, $table, 1);
                 }
             }
 
