@@ -40,7 +40,9 @@
             const parsedResponse = JSON.parse(response);
             const costValue = parsedResponse[0].Cost_S;
 
-  
+            var totalcost = document.getElementById("total-price");
+            let toint =totalcost.innerHTML;
+                totalcost.innerHTML = Number(toint)+Number(costValue);
 
 
 
@@ -162,6 +164,23 @@
 
             }
 
+
+            function UpdateCost($table)
+            {
+
+                var totalcost = document.getElementById("total-price");
+                totalcost.innerHTML="";
+                var rows = $table.rows;
+                //console.log("rows", rows);
+
+                for (var i = 0; i < rows.length; ++i) {
+                let toint =totalcost.innerHTML;
+                let costValue = $table.rows[i].cells[2].innerHTML;
+
+                totalcost.innerHTML = Number(toint)+Number(costValue);
+                }
+            }
+
             //deletes a row in table "Order"
             function deleteRow( $ill)
             {
@@ -170,6 +189,7 @@
 
                 //updates the value in session
                     sessionStorage.setItem('basketresult',x.innerHTML);
+                    UpdateCost(x);
             }
 
             //adds an item into "Order" table
@@ -231,6 +251,7 @@
                 {
                     $orderTable.rows[i].cells[1].innerHTML += " ";
                 }
+
             }
 
       
@@ -238,6 +259,10 @@
             function AddValueColumn($table)
             {
                 var rows = $table.rows;
+                
+                var totalcost = document.getElementById("total-price");
+                totalcost.innerHTML = "";
+                
                 //console.log("rows", rows);
 
                 for (var i = 0; i < rows.length; ++i) 
@@ -257,7 +282,7 @@
             tableid.innerHTML=sentData;
 
 
-            if(tableid.rows[0].cells.length!=4)
+            if(tableid.rows[0].cells.length!=5)
             {
                 AddValueColumn(tableid);
             AddColumn(1,tableid);
@@ -405,8 +430,7 @@
   <button  id="addToOrderbuton" onclick="SetAddVisibility('addToOrder')">
                 dodaj do zamówienia
     </button>
-  <button id="checkout-btn" onclick="AddToDatabase()>Złóż zamówienie</button>
-  <button id="clear-cart-btn">Wyczyść koszyk</button>
+  <button id="checkout-btn" onclick="AddToDatabase()">zamów</button>
 
   <script src="script.js"></script>
 </body>
