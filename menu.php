@@ -72,77 +72,58 @@
 		<div class="menu-text">
 		<h2>Menu</h2>
         <?php
-        $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
-
-
+            $conn =  mysqli_connect("localhost", "root", "", "galakpizza");
             if(mysqli_connect_errno())
             {
                 echo "connection failed";
                 exit();
             }
-        
-
-
-
             $wynik = $conn->query("select * from pizza");
 
                 if($wynik->num_rows>0)
                 {
-
-
                     while($wiersz = $wynik->fetch_assoc())
                     {
-                            $thisName = $wiersz["Name"];
-                            $ingredientString = $wiersz["Ingredients"];
-                            $fullIngredients ="";
-                            $tempHelp="";
-
-
-
-
-                            for($number=0;$number<strlen($ingredientString);$number++)
+                        $thisName = $wiersz["Name"];
+                        $pizzaCost = $wiersz["Cost_S"];
+                        $ingredientString = $wiersz["Ingredients"];
+                        $fullIngredients ="";
+                        $tempHelp="";
+                        $showString = $thisName . " " . $pizzaCost;
+                        for($number=0;$number<strlen($ingredientString);$number++)
+                        {
+                        if($ingredientString[$number]==","  || $number+1==strlen($ingredientString))
+                        {
+                            if($number+1==strlen($ingredientString))
                             {
-                                if($ingredientString[$number]==","  || $number+1==strlen($ingredientString))
-                                {
-                                    if($number+1==strlen($ingredientString))
-                                    {
-                                        $tempHelp .= $ingredientString[$number];
-                                    }
-                                    $thisIngrediant = $conn->query("select * from ingredients where id=$tempHelp");
-                                
-                                        $mytemprow = $thisIngrediant->fetch_row();
-                                    
-                                        if($number+1==strlen($ingredientString))
-                                        {
-                                            $fullIngredients .=$mytemprow[1];
-                                            break;
-                                        }
-                                        $fullIngredients .=$mytemprow[1] . " ";
-                                    $tempHelp="";
-                                }
-                                else
-                                {
-                                    //$tempHelp+=$ingredientString[$number];
-                                    $tempHelp .= $ingredientString[$number];
-                                }
+                                $tempHelp .= $ingredientString[$number];
                             }
+                            $thisIngrediant = $conn->query("select * from ingredients where id=$tempHelp");
+                            
+                            $mytemprow = $thisIngrediant->fetch_row();
+                                
+                            if($number+1==strlen($ingredientString))
+                            {
+                                $fullIngredients .=$mytemprow[1];
+                                break;
+                            }
+                            $fullIngredients .=$mytemprow[1] . " ";
+                            $tempHelp="";
+                            }
+                            else
+                            {
+                                $tempHelp .= $ingredientString[$number];
+                            }
+                        }
                         
-
-                                $thisName = "m".$thisName;
-                                echo <<<HTML
-                            <div class="menu_cell" >
-                                <button id= $thisName onclick="AddToBasket(id)" value="$fullIngredients">
-                                <!--<p class="menuIngrediants">{$fullIngredients}</p>-->
-                                {$fullIngredients}
-                                </button>
-                            </div>
-                            HTML;
-                        //AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
-
-
-                        //AddToBasket($pizzaID,$pizzaIng,$pizzaCostS,$pizzaCostL)
-
-                    
+                    $thisName = "m".$thisName;
+                    echo <<<HTML
+                    <div class="menu_cell" >
+                        <button id= $thisName onclick="AddToBasket(id)" value="$fullIngredients">
+                        {$showString}
+                        </button>
+                    </div>
+                    HTML;
                 }
                     
                 
@@ -158,9 +139,6 @@
                 echo "connection failed";
                 exit();
             }
-        
-
-
 
             $wynik = $conn->query("select Name from pizza where Id=$pizzaId");
             return $wynik;
@@ -169,37 +147,32 @@
 
         ?>   
          <script>
-                        function SetVisibility()
-                        {
-                            var x = document.getElementById("Basket");
-                        if(x.style.display=="none")
-                            x.style.display="block";
-                        else
-                        x.style.display="none"
+            function SetVisibility()
+            {
+                var x = document.getElementById("Basket");
+            if(x.style.display=="none")
+                x.style.display="block";
+            else
+            x.style.display="none"
 
-                        }
-
-
-
-                        function AddToBasket($pizzaID)
-                        {
-                            var menuButton = document.getElementById($pizzaID);
-                            var pizzaIng = menuButton.value;
-
-                            $pizzaID = $pizzaID.substring(1);
-                            var x = document.getElementById("BasketTable");
-                            var newRow = x.insertRow();
-                            var newCell1 = newRow.insertCell();
-                            var newText = document.createTextNode($pizzaID);
-                            var newCell2 = newRow.insertCell();
-                            var newText2 = document.createTextNode(pizzaIng);
-                            newCell1.appendChild(newText);
-                            newCell2.appendChild(newText2);
+            }
 
 
-                        
-                            
-                        }
+
+            function AddToBasket($pizzaID)
+            {
+                var menuButton = document.getElementById($pizzaID);
+                var pizzaIng = menuButton.value;
+                $pizzaID = $pizzaID.substring(1);
+                var x = document.getElementById("BasketTable");
+                var newRow = x.insertRow();
+                var newCell1 = newRow.insertCell();
+                var newText = document.createTextNode($pizzaID);
+                var newCell2 = newRow.insertCell();
+                var newText2 = document.createTextNode(pizzaIng);
+                newCell1.appendChild(newText);
+                newCell2.appendChild(newText2);
+            }
 
 
 

@@ -4,14 +4,12 @@
 
 <script>
 
-    //funkcja do wysyłania zapytać do pliku loadData.php
     function sendQueryToDatabase($myQuery) {
         const params = {
-            query: "select Cost_S from pizza where Name=\"Marinara\"; "
+            query: $myQuery
 
         };
 
-        // Wysyłanie żądania do funkcji PHP
         fetch('loadData.php', {
         method: 'POST',
         headers: {
@@ -22,7 +20,6 @@
         .then(response => response.text())
         .then(data => {
             console.log(data);
-            // Tutaj możesz przetworzyć otrzymane dane z funkcji PHP
         })
         .catch(error => {
             console.error('Błąd podczas wywoływania funkcji PHP:', error);
@@ -64,8 +61,6 @@
                     $table.rows[$row].cells[2].innerHTML = Number(costValue) + Number($table.rows[$row].cells[2].innerHTML) ;
                     }
                 }
-
-            //console.log(costValue);
             } else {
             console.error('Błąd podczas wywoływania funkcji PHP:', xhr.status);
             }
@@ -83,9 +78,6 @@
     function AddToDatabase()
     {
         var x = document.getElementById("Order");
-
-    
-
          sendQueryToDatabase("insert into orders values(null, 1)");
         
         var rowCount = x.rows.length;
@@ -94,7 +86,7 @@
 
             $pizzaName = '"' + x.rows[i].cells[0].innerHTML + '"';
             $pizzaIng = '"' +  x.rows[i].cells[1].innerHTML + '"';
-            $pizzaCost = 3;
+            $pizzaCost = x.rows[i].cells[2].innerHTML;
             
 
         sendQueryToDatabase("insert into orderdetails values(null, (select max(Id) from orders),"+ $pizzaName + "," + $pizzaIng + "," + $pizzaCost+")");
@@ -205,10 +197,8 @@
             {
                 var x = document.getElementById("Order");
                 $ill.closest('tr').remove();
-
-                //updates the value in session
-                    sessionStorage.setItem('basketresult',x.innerHTML);
-                    UpdateCost(x);
+                sessionStorage.setItem('basketresult',x.innerHTML);
+                UpdateCost(x);
             }
 
             //adds an item into "Order" table
@@ -252,8 +242,6 @@
                     var hh="leftPanel";
                     var a = '<button id="ed'+i+'" onclick="EditItem('+i+')" class="basketButtons">edycja</button>';
                     td.innerHTML = a;
-                //  var str= ' echo <<< HTML <button id="e".i onclick="SetAddVisibility("leftPanel")"> <p>edycja</p> </button> </div> HTML ';
-                    //td.innerHTML = str;
                 }
                 else
                 {
@@ -388,8 +376,8 @@
                             $ingredientString = $wiersz["Ingredients"];
                             $fullIngredients ="";
                             $tempHelp="";
-
-
+                            $pizzaCost = $wiersz["Cost_S"];
+                            $showString = $thisid . " " . $pizzaCost;
 
 
                             for($number=0;$number<strlen($ingredientString);$number++)
@@ -418,23 +406,15 @@
                                     $tempHelp .= $ingredientString[$number];
                                 }
                             }
-                        
-
                                 $thisid = $thisid;
                             echo <<<HTML
                         <div class="menu_cell" >
                             <button id= $thisid onclick="AddToOrder(id)" value="$fullIngredients">
                                 <p class="menuName"></p>
-                            <p class="menuIngrediants">{$fullIngredients}</p>
+                            <p class="menuIngrediants">{$showString}</p>
                             </button>
                         </div>
                         HTML;
-           //AddToBasket($wiersz["Id"] , $fullIngredients,$wiersz["Cost_S"] , $wiersz["Cost_L"] )
-
-
-                        //AddToBasket($pizzaID,$pizzaIng,$pizzaCostS,$pizzaCostL)
-
-                    
                     }
                     
                 
