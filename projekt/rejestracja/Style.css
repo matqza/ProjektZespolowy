@@ -1,14 +1,13 @@
-/* Style.css */
 .container {
   position: relative;
 }
 
-.body {
-  /*background-color: lightblue;*/
-  background-image: url('imagePizzaWeb.jpg');
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
+       body {
+        /*background-color: lightblue;*/
+        background-image:url('imagePizzaWeb.jpg');
+        background-size:100%;
+        background-repeat: no-repeat;
+      }
 
 .button-register {
   /* background-color: darkcyan; */

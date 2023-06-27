@@ -109,7 +109,7 @@ $conn->close();
       <li><a href="#item1">Strona główna</a></li>
       <li><a href="#item2">Użytkownicy</a></li>
       <li><a href="#item3">Zamówienia</a></li>
-      <li><a href="#item4">Wyloguj się</a></li>
+      <li><a href="http://localhost/projekt/login/login.html">Wyloguj się</a></li>
       <li><a href="#default">wyczyść</a></li>
     </ul>
   </nav>
