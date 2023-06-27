@@ -31,6 +31,7 @@
     background-color: red;
 }
 
+
 /*jacek*/
 body 
 {
@@ -141,4 +142,16 @@ thead
     text-align: center; /* Wyśrodkowanie zawartości w polu */
     padding: 10px;
     font-size: 16px;
+}
+
+#addToOrderbuton
+{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: rgba(248, 248, 248, 0.8);
+    border: none;
+    cursor: pointer;
 }

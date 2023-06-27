@@ -13,7 +13,7 @@
         <!-- option section -->
         <header>
             <div class="logo-container">
-            <a href="#" class="logo"><img src="img/logo.jpg" width="90px" height="90px"></a>
+            <a href="#" class="logo"><img src="logo.jpg" width="90px" height="90px"></a>
             <h1 class="logo-text animated bounce">Pizzerro</h1>
             </div>
             <ul class="options">
@@ -23,10 +23,13 @@
             <li><a href="#promo" class="nav-link">Promocje</a></li>
             </ul>
 
-            <div class="icons">
+           <!-- <div class="icons">
                 <a href="#"><i class='bx bx-cart cart-icon'></i></a>
                 <span class="cart-text">Mój Koszyk</span>
-            </div>
+            </div>-->
+            <button onclick="SetVisibility()" id="BasketButton" class ="icons">
+        Koszyk
+        </button>
         </header>
         <!-- end option section -->
 
@@ -55,7 +58,7 @@
 
 
         <!--div z koszykiem-->
-        <div id="Basket" >
+        <div id="Basket"  >
             <table id="BasketTable">
             </table>
             
@@ -196,11 +199,8 @@
 		</div>
 	    </section>
 
-        <header >
-        <button onclick="SetVisibility()" id="BasketButton">
-        Koszyk
-        </button>
-        </header>
+        
+        
 
 
 
